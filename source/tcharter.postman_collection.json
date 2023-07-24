@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "1bd729d7-a4a4-4ccd-8482-7e1937bf571b",
+		"name": "tcharter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "page1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tab",
+							"value": "airplane",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tcharter",
+						"ir"
+					],
+					"path": [
+						"tickets",
+						"tickets",
+						"VEhSLUtJSC0xNDAyLzA1LzA5",
+						""
+					],
+					"query": [
+						{
+							"key": "airplane",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tab",
+							"value": "airplane",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane=&page=2",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tcharter",
+						"ir"
+					],
+					"path": [
+						"tickets",
+						"tickets",
+						"VEhSLUtJSC0xNDAyLzA1LzA5",
+						""
+					],
+					"query": [
+						{
+							"key": "airplane",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
