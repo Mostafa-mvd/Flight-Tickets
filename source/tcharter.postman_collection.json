@@ -6,61 +6,257 @@
 	},
 	"item": [
 		{
-			"name": "page1",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "tab",
-							"value": "airplane",
-							"type": "text"
+			"name": "dates",
+			"item": [
+				{
+					"name": "dates1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "types",
+									"value": "[\"system\",\"provider\",\"bclass\",\"economy\"]",
+									"type": "text"
+								},
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								},
+								{
+									"key": "selected_date",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/dates/MHD-THR-airplane",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"dates",
+								"MHD-THR-airplane"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane",
-					"protocol": "https",
-					"host": [
-						"www",
-						"tcharter",
-						"ir"
-					],
-					"path": [
-						"tickets",
-						"tickets",
-						"VEhSLUtJSC0xNDAyLzA1LzA5",
-						""
-					],
-					"query": [
-						{
-							"key": "airplane",
-							"value": null
+				{
+					"name": "dates2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "types",
+									"value": "[\"all\", \"system\",\"provider\",\"bclass\",\"economy\"]",
+									"type": "text"
+								},
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								},
+								{
+									"key": "selected_date",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/dates/THR-MHD-airplane/?section=2",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"dates",
+								"THR-MHD-airplane",
+								""
+							],
+							"query": [
+								{
+									"key": "section",
+									"value": "2"
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "page2",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "tab",
-							"value": "airplane",
-							"type": "text"
+			"name": "pages",
+			"item": [
+				{
+					"name": "page1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"tickets",
+								"VEhSLUtJSC0xNDAyLzA1LzA5",
+								""
+							],
+							"query": [
+								{
+									"key": "airplane",
+									"value": null
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
+				{
+					"name": "page2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane=&page=2",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"tickets",
+								"VEhSLUtJSC0xNDAyLzA1LzA5",
+								""
+							],
+							"query": [
+								{
+									"key": "airplane",
+									"value": ""
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cities",
+			"item": [
+				{
+					"name": "airplane_city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/flight_guarantee",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"flight_guarantee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cities id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.tcharter.ir/mywebservices/get_city?from=",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"mywebservices",
+								"get_city"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcharter js main functions",
+			"request": {
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane=&page=2",
+					"raw": "https://www.tcharter.ir/js/main.js?rand=174",
 					"protocol": "https",
 					"host": [
 						"www",
@@ -68,19 +264,13 @@
 						"ir"
 					],
 					"path": [
-						"tickets",
-						"tickets",
-						"VEhSLUtJSC0xNDAyLzA1LzA5",
-						""
+						"js",
+						"main.js"
 					],
 					"query": [
 						{
-							"key": "airplane",
-							"value": ""
-						},
-						{
-							"key": "page",
-							"value": "2"
+							"key": "rand",
+							"value": "174"
 						}
 					]
 				}
