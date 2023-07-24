@@ -6,7 +6,7 @@
 import scrapy
 
 
-class FlightTicketsPredictionItem(scrapy.Item):
+class FlightTicketsScraperItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass

@@ -1,4 +1,4 @@
-# Scrapy settings for flight_tickets_prediction project
+# Scrapy settings for flight_tickets_scraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "flight_tickets_prediction"
+BOT_NAME = "flight_tickets_scraper"
 
-SPIDER_MODULES = ["flight_tickets_prediction.spiders"]
-NEWSPIDER_MODULE = "flight_tickets_prediction.spiders"
+SPIDER_MODULES = ["flight_tickets_scraper.spiders"]
+NEWSPIDER_MODULE = "flight_tickets_scraper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "flight_tickets_prediction (+http://www.yourdomain.com)"
+#USER_AGENT = "flight_tickets_scraper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "flight_tickets_prediction.middlewares.FlightTicketsPredictionSpiderMiddleware": 543,
+#    "flight_tickets_scraper.middlewares.FlightTicketsScraperSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "flight_tickets_prediction.middlewares.FlightTicketsPredictionDownloaderMiddleware": 543,
+#    "flight_tickets_scraper.middlewares.FlightTicketsScraperDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "flight_tickets_prediction.pipelines.FlightTicketsPredictionPipeline": 300,
+#    "flight_tickets_scraper.pipelines.FlightTicketsScraperPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
