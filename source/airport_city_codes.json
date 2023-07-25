@@ -3,7 +3,7 @@
 
     "SourceURL": "https: //www.tcharter.ir/mywebservices/get_city?from=",
 
-    "getCity": [
+    "CityCodes": [
         {
             "id": "THR",
             "city": "تهران"
@@ -57,10 +57,6 @@
             "city": "آلماتی"
         },
         {
-            "id":"AUH", 
-            "city":"ابوظبی"
-        },
-        {
             "id":"AYT", 
             "city":"آنتالیا"
         },
@@ -101,20 +97,12 @@
             "city":"پاریس"
         },
         {
-            "id":"CGN",
-            "city":"کلن بن"
-        },
-        {
             "id":"DAM",
             "city":"دمشق"
         },
         {
             "id":"DEF",
             "city":"دزفول"
-        },
-        {
-            "id":"DLM",
-            "city":"دالامان"
         },
         {
             "id":"DNZ",
@@ -213,10 +201,6 @@
             "city":"نوشهر"
         },
         {
-            "id":"OHS",
-            "city":"صحار"
-        },
-        {
             "id":"OMH",
             "city":"ارومیه"
         },
@@ -231,10 +215,6 @@
         {
             "id":"SAW",
             "city":"استانبول (صابیها)"
-        },
-        {
-            "id":"SCO",
-            "city":"آقتائو"
         },
         {
             "id":"SHJ",
