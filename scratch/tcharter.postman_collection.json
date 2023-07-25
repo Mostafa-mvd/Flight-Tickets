@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "1bd729d7-a4a4-4ccd-8482-7e1937bf571b",
 		"name": "tcharter",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17043970"
 	},
 	"item": [
 		{
@@ -18,7 +19,7 @@
 							"formdata": [
 								{
 									"key": "types",
-									"value": "[\"system\",\"provider\",\"bclass\",\"economy\"]",
+									"value": "[\"all\", \"system\",\"provider\",\"bclass\",\"economy\"]",
 									"type": "text"
 								},
 								{
@@ -34,7 +35,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/dates/MHD-THR-airplane",
+							"raw": "https://www.tcharter.ir/tickets/dates/MHD-THR-airplane?section=1",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -45,6 +46,12 @@
 								"tickets",
 								"dates",
 								"MHD-THR-airplane"
+							],
+							"query": [
+								{
+									"key": "section",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -120,7 +127,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane",
+							"raw": "https://www.tcharter.ir/tickets/tickets/TUhELVRIUi0xNDAyLzA1LzAz/?airplane&page=1",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -130,13 +137,17 @@
 							"path": [
 								"tickets",
 								"tickets",
-								"VEhSLUtJSC0xNDAyLzA1LzA5",
+								"TUhELVRIUi0xNDAyLzA1LzAz",
 								""
 							],
 							"query": [
 								{
 									"key": "airplane",
 									"value": null
+								},
+								{
+									"key": "page",
+									"value": "1"
 								}
 							]
 						}
@@ -159,7 +170,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUtJSC0xNDAyLzA1LzA5/?airplane=&page=2",
+							"raw": "https://www.tcharter.ir/tickets/tickets/TUhELVRIUi0xNDAyLzA1LzAz/?airplane=&page=7",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -169,7 +180,7 @@
 							"path": [
 								"tickets",
 								"tickets",
-								"VEhSLUtJSC0xNDAyLzA1LzA5",
+								"TUhELVRIUi0xNDAyLzA1LzAz",
 								""
 							],
 							"query": [
@@ -179,7 +190,7 @@
 								},
 								{
 									"key": "page",
-									"value": "2"
+									"value": "7"
 								}
 							]
 						}
