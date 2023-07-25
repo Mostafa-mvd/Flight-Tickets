@@ -1,4 +1,8 @@
 {
+    "_Comment": "gathered airport codes with ajax request from source url",
+
+    "SourceURL": "https: //www.tcharter.ir/mywebservices/get_city?from=",
+
     "getCity": [
         {
             "id": "THR",
