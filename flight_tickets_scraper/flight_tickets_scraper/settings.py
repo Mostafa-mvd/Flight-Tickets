@@ -64,7 +64,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "flight_tickets_scraper.pipelines.FlightTicketsScraperPipeline": 300,
+   "flight_tickets_scraper.pipelines.FlightTicketsScraperPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
