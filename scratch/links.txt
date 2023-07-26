@@ -1,0 +1,16 @@
+
+Ajax Request Links:
+
+    Digikala:
+        1- https://ws.alibaba.ir/api/v2/flights/domestic/available/cheapest
+
+        2- https://ws.alibaba.ir/api/v1/flights/domestic/available/GIYTENJSHE3TAOBWFUYC2NRTHAZDKOJZHE4TEOJQGYYTIMRWGIWTGMRNKREFELKNJBCC2MRQGIZTAOBSGQWS2LI
+
+    Tcharter:
+        1- https://www.tcharter.ir/tickets/tickets/TUhELVRIUi0xNDAyLzA1LzAz/?airplane&page=1
+    
+        2- https://www.tcharter.ir/tickets/get-list/VEhSLU1IRC0xNDAyLzA1LzEy
+    
+        3- https://www.tcharter.ir/tickets/tickets/VEhSLU1IRC0xNDAyLzA1LzA3/
+
+        4- https://www.tcharter.ir/tickets/dates/MHD-THR-airplane?section=1
