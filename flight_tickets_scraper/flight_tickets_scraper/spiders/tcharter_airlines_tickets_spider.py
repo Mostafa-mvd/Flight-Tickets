@@ -7,7 +7,6 @@ from flight_tickets_scraper.utils import (
     list_even_values)
 
 from random import shuffle
-from time import sleep
 
 import scrapy
 import json
@@ -24,6 +23,8 @@ class AirlinesTickets(scrapy.Spider):
         "types": ["all", "system", "provider", "bclass", "economy"],
         "tab": "airplane",
     }
+    request_payload_as_unicode = r'types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane'
+
 
     def start_requests(self):
         """send request for every possible combination of two city airports."""
@@ -72,7 +73,7 @@ class AirlinesTickets(scrapy.Spider):
             merged_dates = merge_two_lists(striped_day_values, datetime_values)
             
             for merged_date, city_airline_date_code in zip(merged_dates, city_airline_date_codes):
-                url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}/?airplane=&page=1"
+                url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}"
 
                 # TODO: this is just for test
                 # self.parse_counter += 1
@@ -87,11 +88,11 @@ class AirlinesTickets(scrapy.Spider):
                     "destination_city": destination_city,
                 }
 
-                yield scrapy.FormRequest(
+                yield scrapy.Request(
                     url=url,
                     callback=self.parse_tickets_details,
                     method=self.request_method,
-                    formdata=self.request_payload,
+                    body=self.request_payload_as_unicode,
                     cb_kwargs=cb_kwargs,
                     meta=meta)
 
@@ -99,9 +100,9 @@ class AirlinesTickets(scrapy.Spider):
         """second level of parsing for gathering tickets information."""
 
         # TODO: check condition for pages navigation
-        if response.body == b"error":
-            self.page_number = 1
-            return None
+        #if response.body == b"error":
+        #    self.page_number = 1
+        #    return None
 
         tickets_table = response.css('table.main-ticket-list tbody')
         ticket_detail_trs = tickets_table.css("tr")
@@ -118,7 +119,7 @@ class AirlinesTickets(scrapy.Spider):
                 flight_ticket_item["capacity"] = ticket_detail_tds[2].css("::text").get()
                 flight_ticket_item["flying_number"] = ticket_detail_tds[3].css("::text").get()
                 flight_ticket_item["flying_class"] = ticket_detail_tds[4].css("::text").get()
-                flight_ticket_item["ticket_price"] = ticket_detail_tds[6].css("::text").getall()[1].strip() + " T"
+                flight_ticket_item["ticket_price"] = ticket_detail_tds[6].css("::text").getall()[1].strip()
                 flight_ticket_item["flying_type"] = ticket_detail_tds[7].css("::text").getall()[1].strip()
 
                 flight_ticket_item["source"] = response.meta["source_city"]
@@ -128,18 +129,19 @@ class AirlinesTickets(scrapy.Spider):
                 yield flight_ticket_item
 
             self.page_number += 1
-            
-            shared_city_airline_date_code = kwargs["city_airline_date_code"]
 
-            next_page_url = f"{self.base_url}/tickets/tickets/{shared_city_airline_date_code}/?airplane&page={self.page_number}"
-            
+            city_airline_date_code = kwargs["city_airline_date_code"]
+
+            next_page_url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}/?airplane&page={self.page_number}"
+                
             cb_kwargs = {
-                "shared_city_airline_date_code": shared_city_airline_date_code,
+                "city_airline_date_code": city_airline_date_code,
             }
-            
-            yield response.follow(
-                url=next_page_url,
-                callback=self.parse_tickets_details,
-                method=self.request_method,
-                body=json.dumps(self.request_payload),
-                cb_kwargs=cb_kwargs)
+                
+            #yield scrapy.FormRequest(
+            #    url=next_page_url,
+            #    callback=self.parse_tickets_details,
+            #    method=self.request_method,
+            #    formdata=self.request_payload,
+            #    cb_kwargs=cb_kwargs,
+            #    meta=response.meta)
