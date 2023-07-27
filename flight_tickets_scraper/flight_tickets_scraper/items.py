@@ -5,6 +5,7 @@
 
 from scrapy import Item, Field
 
+# Items act as simple temporary containers to store the extracted data before further processing or saving it.
 
 class FlightTicketsScraperItem(Item):
     source = Field()
