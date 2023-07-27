@@ -15,7 +15,7 @@ NEWSPIDER_MODULE = "flight_tickets_scraper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+#USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -38,10 +38,24 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-#    "Accept-Language": "en",
-#}
+DEFAULT_REQUEST_HEADERS = {
+    "Accept": "*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Connection": "keep-alive",
+    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "Cookie": "TCH=8ktqu1bpqr7u74p2tb5kchrnls; _gcl_au=1.1.849212697.1690208445; _ga=GA1.2.1776701195.1690208446; _gid=GA1.2.2026748026.1690208446; GoReferer=Q2FrZQ%3D%3D.ZmZiOTljNGYzNzQ3NjI1MGRmYWVkYzA5ZTk4ZmExYWUzMzBmMzI0MzNmYzExNWNmYzQ1NTgxMzIwNmI1Y2RiZm%2FM%2FFOkD4jQWXnN8aWOIamkxmDFlfNLQsSJ1TEMiAr5rrwF10W6JUmjVjLZVW4RBLdf0T1a5iDpK5IFUKOV5puSILH36ld4ZUhr8KP7csFHvRsa%2FCeSqAPqe7MU9pYxK0vjMGJcq0sbVioImH%2FeHYSJJqoDse6ZJhuFUMXqb9VPGpFufY%2BN4UD%2BK9yx%2FJOiOCiAIungjXbNkomZY2cdLt0QV7cDsUTmJVdFW4ornQK005zt%2F42TrQMjD5s6HOpWaMeifvuFITe9vXcQJzONuYPegFGweJnLjuukpM3wyy28XU69o0qrW5cLnC1pDCt%2BAzMO%2F%2BIeolk%2BIaIdeL0tiWjICR658eCz%2BHXCjb13jx37tC1qLdspCFcdag%2BlfwKc6w%3D%3D; _ga_R30088QYSJ=GS1.2.1690484040.21.0.1690484040.60.0.0",
+    "DNT": "1",
+    "Origin": "https://www.tcharter.ir",
+    "Referer": "https://www.tcharter.ir/",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+    "X-Requested-With": "XMLHttpRequest",
+    "sec-ch-ua": "'Not/A)Brand';v='99', 'Google Chrome';v='115', 'Chromium';v='115'",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "'Linux'",
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -63,17 +77,17 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   "flight_tickets_scraper.pipelines.FlightTicketsScraperPipeline": 300,
-}
+#ITEM_PIPELINES = {
+#   "flight_tickets_scraper.pipelines.FlightTicketsScraperPipeline": 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 2
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
+AUTOTHROTTLE_MAX_DELAY = 6
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
