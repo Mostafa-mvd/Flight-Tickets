@@ -2,9 +2,8 @@ from flight_tickets_scraper.items import FlightTicketsScraperItem
 
 from flight_tickets_scraper.utils import (
     make_two_combinations_airports, 
-    merge_two_lists, 
-    list_odd_values, 
-    list_even_values)
+    filter_selectors,
+)
 
 from random import shuffle
 
@@ -26,10 +25,10 @@ class AirlinesTickets(scrapy.Spider):
         combinations_result = list(make_two_combinations_airports())
 
         # TODO: shuffle result is just for test
-        shuffle(combinations_result)
+        #shuffle(combinations_result)
 
         # TODO: combinations_result[:100] is just for test
-        for source, destination in combinations_result[:3]:
+        for source, destination in combinations_result[:1]:
             meta = {
                 "source_city": source,
                 "destination_city": destination
@@ -74,24 +73,20 @@ class AirlinesTickets(scrapy.Spider):
     def parse_airplane_dates_table(self, response, **kwargs):
         """second level of parsing for gathering tickets selling dates."""
 
-        m = response.css("br+ span::text").extract()
-
-        city_airline_date_codes = response.css(".daterow::attr(data)").extract()
-
-        date_values = response.css("#dateItem > span:nth-child(1)::text").getall()
-        datetime_values = list_odd_values(date_values)
-        day_values = list_even_values(date_values)
-        striped_day_values = map(str.strip, day_values)
-        merged_dates = merge_two_lists(striped_day_values, datetime_values)
+        city_airline_date_rows = response.css(".daterow")
+        filtered_city_airline_rows = filter_selectors(city_airline_date_rows, ".currency_symbole")
             
-        for merged_date, city_airline_date_code in zip(merged_dates, city_airline_date_codes):
+        for filtered_city_airline_row in filtered_city_airline_rows:
+            city_airline_date_code = filtered_city_airline_row.css(".daterow::attr(data)").get()
+            date_values = filtered_city_airline_row.css("#dateItem > span:nth-child(1)::text").getall()
+
             url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}/"
                 
             cb_kwargs = {
                 "city_airline_date_code": city_airline_date_code,
             }
 
-            response.meta["date"] = merged_date
+            response.meta["date"] = f"{date_values[0].strip()} {date_values[1]}"
             response.meta["page_number"] = 1
 
             yield scrapy.Request(
