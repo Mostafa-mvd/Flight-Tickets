@@ -1,3 +1,6 @@
+from urllib.parse import unquote
+
+
 def infinite_sequence():
     num = 0
     while num != 10:
@@ -8,7 +11,7 @@ def infinite_sequence():
 
 
 generator = infinite_sequence()
-#print(list(generator))
 
-for i in generator:
-    print(i)
+
+url = unquote(r'https://www.tcharter.ir//tickets/search/0/%D9%85%D8%B4%D9%87%D8%AF-%D8%AA%D9%87%D8%B1%D8%A7')
+print(url)

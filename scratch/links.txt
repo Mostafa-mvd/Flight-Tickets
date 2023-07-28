@@ -14,3 +14,5 @@ Ajax Request Links:
         3- https://www.tcharter.ir/tickets/tickets/VEhSLU1IRC0xNDAyLzA1LzA3/
 
         4- https://www.tcharter.ir/tickets/dates/MHD-THR-airplane?section=1
+
+        5- https://www.tcharter.ir//tickets/search/0/%DA%AF%D8%B1%DA%AF%D8%A7%D9%86-%D8%B9%D8%B3%D9%84%D9%88%DB%8C
