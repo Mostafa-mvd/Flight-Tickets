@@ -46,4 +46,5 @@ def list_even_values(lst):
 
 
 def merge_two_lists(list1, list2):
-    return [f"{val1} {val2}" for val1, val2 in zip(list1, list2)]
+    for val1, val2 in zip(list1, list2):
+        yield f"{val1} {val2}"
