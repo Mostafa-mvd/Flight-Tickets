@@ -16,93 +16,97 @@ class AirlinesTickets(scrapy.Spider):
     name = "airlines_tickets"
     allowed_domains = ["www.tcharter.ir"]
 
-    page_number = 1
-    base_url = "https://www.tcharter.ir"
     request_method = "POST"
-    request_payload = {
-        "types": ["all", "system", "provider", "bclass", "economy"],
-        "tab": "airplane",
-    }
-    request_payload_as_unicode = r'types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane'
-
+    base_url = "https://www.tcharter.ir"
+    curl_request_raw_payload = r'types=%5B%22all%22%2C%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane'
 
     def start_requests(self):
         """send request for every possible combination of two city airports."""
 
-        combinations_result = make_two_combinations_airports()
+        combinations_result = list(make_two_combinations_airports())
 
         # TODO: shuffle result is just for test
-        # shuffle(result)
-        
-        self.request_payload["selected_date"] = ""
+        shuffle(combinations_result)
 
         # TODO: combinations_result[:100] is just for test
-        for source, destination in list(combinations_result)[:1]:
+        for source, destination in combinations_result[:3]:
             meta = {
                 "source_city": source,
                 "destination_city": destination
             }
 
-            # this section counter goes to number 4 because in tcharter js goes to number 4 for ticket calender page (show_calendar_page js function) in otherwise It will be out next page in calender page.
+            url = f"{self.base_url}//tickets/search/0/{source}-{destination}"
+
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse,
+                method=self.request_method,
+                body=self.curl_request_raw_payload,
+                meta=meta)
+
+    def parse(self, response, **kwargs):
+        """first level of parsing for gathering airplanes dates sections urls."""
+
+        airplane_dates_table = response.css(".ftmini")
+
+        if airplane_dates_table:
+
+            request_payload = {
+                "types": ["all", "system", "provider", "bclass", "economy"],
+                "tab": "airplane",
+                "selected_date": "",
+            }
+
+            source = response.meta["source_city"]
+            destination = response.meta["destination_city"]
+
+            # this section counter goes to number 4 because in tcharter js goes to number 4 for ticket calender table (show_calendar_page js function) in otherwise It will be out next page in calender page.
             for section_counter in range(1, 5):
                 url = f"{self.base_url}/tickets/dates/{source}-{destination}-airplane?section={section_counter}"
 
                 yield scrapy.Request(
                     url=url,
-                    callback=self.parse,
+                    callback=self.parse_airplane_dates_table,
                     method=self.request_method,
-                    body=json.dumps(self.request_payload),
-                    meta=meta)
-                
-        self.request_payload.pop("selected_date")
+                    body=json.dumps(request_payload),
+                    meta=response.meta)
 
-    def parse(self, response, **kwargs):
-        """first level of parsing for gathering tickets selling dates."""
+    def parse_airplane_dates_table(self, response, **kwargs):
+        """second level of parsing for gathering tickets selling dates."""
+
+        m = response.css("br+ span::text").extract()
 
         city_airline_date_codes = response.css(".daterow::attr(data)").extract()
-        
-        # if not then there is no airplane for selling its tickets, otherwise airplane date calender page is empty.
-        if city_airline_date_codes:
-            source_city = response.meta["source_city"]
-            destination_city = response.meta["destination_city"]
 
-            date_values = response.css("#dateItem > span:nth-child(1)::text").getall()
-            datetime_values = list_odd_values(date_values)
-            day_values = list_even_values(date_values)
-            striped_day_values = map(str.strip, day_values)
-            merged_dates = merge_two_lists(striped_day_values, datetime_values)
+        date_values = response.css("#dateItem > span:nth-child(1)::text").getall()
+        datetime_values = list_odd_values(date_values)
+        day_values = list_even_values(date_values)
+        striped_day_values = map(str.strip, day_values)
+        merged_dates = merge_two_lists(striped_day_values, datetime_values)
             
-            for merged_date, city_airline_date_code in zip(merged_dates, city_airline_date_codes):
-                url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}"
-
-                # TODO: this is just for test
-                # self.parse_counter += 1
+        for merged_date, city_airline_date_code in zip(merged_dates, city_airline_date_codes):
+            url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}/"
                 
-                cb_kwargs = {
-                    "city_airline_date_code": city_airline_date_code,
-                }
+            cb_kwargs = {
+                "city_airline_date_code": city_airline_date_code,
+            }
 
-                meta = {
-                    "date": merged_date,
-                    "source_city": source_city,
-                    "destination_city": destination_city,
-                }
+            response.meta["date"] = merged_date
+            response.meta["page_number"] = 1
 
-                yield scrapy.Request(
-                    url=url,
-                    callback=self.parse_tickets_details,
-                    method=self.request_method,
-                    body=self.request_payload_as_unicode,
-                    cb_kwargs=cb_kwargs,
-                    meta=meta)
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse_tickets_table,
+                method=self.request_method,
+                body=self.curl_request_raw_payload,
+                cb_kwargs=cb_kwargs,
+                meta=response.meta)
 
-    def parse_tickets_details(self, response, **kwargs):
-        """second level of parsing for gathering tickets information."""
+    def parse_tickets_table(self, response, **kwargs):
+        """third level of parsing for gathering tickets information."""
 
-        # TODO: check condition for pages navigation
-        #if response.body == b"error":
-        #    self.page_number = 1
-        #    return None
+        if response.body == b"error":
+            return None
 
         tickets_table = response.css('table.main-ticket-list tbody')
         ticket_detail_trs = tickets_table.css("tr")
@@ -128,20 +132,22 @@ class AirlinesTickets(scrapy.Spider):
 
                 yield flight_ticket_item
 
-            self.page_number += 1
+            #When parsed the all items in each page's tables comes here.
+            response.meta["page_number"] += 1
+            next_page_number = response.meta["page_number"]
 
             city_airline_date_code = kwargs["city_airline_date_code"]
 
-            next_page_url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}/?airplane&page={self.page_number}"
+            next_page_url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}?page={next_page_number}"
                 
             cb_kwargs = {
                 "city_airline_date_code": city_airline_date_code,
             }
                 
-            #yield scrapy.FormRequest(
-            #    url=next_page_url,
-            #    callback=self.parse_tickets_details,
-            #    method=self.request_method,
-            #    formdata=self.request_payload,
-            #    cb_kwargs=cb_kwargs,
-            #    meta=response.meta)
+            yield scrapy.Request(
+                url=next_page_url,
+                callback=self.parse_tickets_table,
+                method=self.request_method,
+                body=self.curl_request_raw_payload,
+                cb_kwargs=cb_kwargs,
+                meta=response.meta)
