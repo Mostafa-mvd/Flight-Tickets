@@ -75,3 +75,11 @@ DEFAULT_REQUEST_HEADERS = {
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": "Linux"
 }
+
+def check_equal_THR_IKA(airports_codes):
+    return (airports_codes[0], airports_codes[1]) != ("THR", "IKA")
+
+def check_equal_IKA_THR(airports_codes):
+    return (airports_codes[0], airports_codes[1]) != ("IKA", "THR")
+
+lambda airports_codes: check_equal_THR_IKA(airports_codes) or check_equal_IKA_THR(airports_codes)), 
