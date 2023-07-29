@@ -1,11 +1,9 @@
-from flight_tickets_scraper.items import FlightTicketsScraperItem
-
 from flight_tickets_scraper.utils import (
-    make_two_combinations_airports, 
+    two_permutation_airports_codes,
     filter_selectors,
 )
 
-from random import shuffle
+from flight_tickets_scraper.items import FlightTicketsScraperItem
 
 import scrapy
 import json
@@ -22,13 +20,9 @@ class AirlinesTickets(scrapy.Spider):
     def start_requests(self):
         """send request for every possible combination of two city airports."""
 
-        combinations_result = list(make_two_combinations_airports())
+        combinations_result = two_permutation_airports_codes()
 
-        # TODO: shuffle result is just for test
-        #shuffle(combinations_result)
-
-        # TODO: combinations_result[:100] is just for test
-        for source, destination in combinations_result[:1]:
+        for source, destination in combinations_result:
             meta = {
                 "source_city": source,
                 "destination_city": destination
