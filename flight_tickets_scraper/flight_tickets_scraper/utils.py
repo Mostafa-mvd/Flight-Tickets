@@ -1,18 +1,14 @@
 from itertools import permutations
 
+from scrapy.utils.project import get_project_settings
+
 from json import load
-import pathlib
 
 
-def make_json_file_path(file_name):
-    """create your json file path in source directory from your project parent folder"""
-    parent_path = pathlib.Path(__file__).parent.parent.parent
-    json_file_path = parent_path.joinpath("source", file_name)
-    return json_file_path
+settings = get_project_settings()
 
 
-def get_json_key_value(file_name, key):
-    json_file_path = make_json_file_path(file_name)
+def get_json_key_value(json_file_path, key):
     json_file_handler = open(json_file_path)
     airports_city = load(json_file_handler)
     airports_codes = airports_city[key]
@@ -23,7 +19,10 @@ def get_json_key_value(file_name, key):
 
 
 def two_permutation_airports_codes():
-    airports_city_codes_lst = get_json_key_value("airport_city_codes.json", "CityCodes")
+    json_file_path = settings.get("SOURCES")["airport_city_codes_path"]
+    json_key = "CityCodes"
+
+    airports_city_codes_lst = get_json_key_value(json_file_path, json_key)
     
     airports_codes_lst = [airport_city_code_dict["id"]
                           for airport_city_code_dict in airports_city_codes_lst]
