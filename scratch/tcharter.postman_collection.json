@@ -35,7 +35,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/dates/MHD-THR-airplane?section=1",
+							"raw": "https://www.tcharter.ir/tickets/dates/THR-AWZ-airplane?section=4",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -45,12 +45,12 @@
 							"path": [
 								"tickets",
 								"dates",
-								"MHD-THR-airplane"
+								"THR-AWZ-airplane"
 							],
 							"query": [
 								{
 									"key": "section",
-									"value": "1"
+									"value": "4"
 								}
 							]
 						}
@@ -83,7 +83,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/dates/THR-MHD-airplane/?section=2",
+							"raw": "https://www.tcharter.ir/tickets/dates/GBT-PGU-airplane",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -93,13 +93,409 @@
 							"path": [
 								"tickets",
 								"dates",
-								"THR-MHD-airplane",
-								""
+								"GBT-PGU-airplane"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dates3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "types",
+									"value": "[\"all\",\"system\",\"provider\",\"bclass\",\"economy\"]",
+									"type": "text"
+								},
+								{
+									"key": "tab",
+									"value": "airplane",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/dates/PGU-YES-airplane?section=1",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"dates",
+								"PGU-YES-airplane"
 							],
 							"query": [
 								{
 									"key": "section",
-									"value": "2"
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "persian search 22 headers",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.tcharter.ir"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.tcharter.ir/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane"
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir//tickets/search/0/گرگان-عسلویه",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"",
+								"tickets",
+								"search",
+								"0",
+								"گرگان-عسلویه"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "persian search",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.tcharter.ir"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.tcharter.ir/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane"
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir//tickets/search/0/تهران-مشهد",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"",
+								"tickets",
+								"search",
+								"0",
+								"تهران-مشهد"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "english search",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.tcharter.ir"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.tcharter.ir/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane"
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir//tickets/search/0/ABD-GSM",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"",
+								"tickets",
+								"search",
+								"0",
+								"ABD-GSM"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proxy",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.tcharter.ir"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.tcharter.ir/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							},
+							{
+								"key": "Cookie",
+								"value": "TCH=8ktqu1bpqr7u74p2tb5kchrnls; _gcl_au=1.1.849212697.1690208445; _ga=GA1.2.1776701195.1690208446; GoReferer=Q2FrZQ%3D%3D.NmE2M2Q5YTJhN2Q1NTdiYmM1OTQxYjViMDM1M2YzZGNlNzI2ODRhMTVmNTUxYWQ3MGEzMjNjNGQ2OWU2NDYwZDeixBmZO5NbPbNqjt%2FV4Fe3IL2zrpCYiZYptRB6iVFOrcL7zz19M4oW6AfqL%2FuhUc%2Bzrd5vEGhH%2FOubeUycnGPKRYXewiY9DI7vNfQuZxrb64cNvS29qkfVZGPxq39YvzYBpSdMVWvxjvLRcxw%2Bkfg10BuQ5f2bgJnreJJckINnfBmMJIP3R7pER2GVswO5Mtb8eZhkd0fU2%2BOxvkQ%2FaxCzquEBdHEQin973%2BJY5JqsPK9TfxPftVgwoGEdMUP4jIPlBoqlZDujI89BkFeK4bwDUF0Up90eLo3KI1Y6RuUqTjnUd%2BZ6GHVZqkNmRo1TkuyYF4fByuiEpve4cf31RJPYbd7oaaC4TU%2FKqc0qGc8AB%2BJOrym5FzT1PNgljwp80w%3D%3D; _gid=GA1.2.1145932475.1690760607; _gat=1; _ga_R30088QYSJ=GS1.2.1690763535.30.0.1690763535.60.0.0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane"
+						},
+						"url": {
+							"raw": "https://proxy.scrapeops.io/v1/?api_key=4f35d66f-c691-462b-aed5-d403df96367f&url=https%3A%2F%2Fwww.tcharter.ir%2Ftickets%2Ftickets%2FVEhSLU1IRC0xNDAyLzA3LzAz%2F",
+							"protocol": "https",
+							"host": [
+								"proxy",
+								"scrapeops",
+								"io"
+							],
+							"path": [
+								"v1",
+								""
+							],
+							"query": [
+								{
+									"key": "api_key",
+									"value": "4f35d66f-c691-462b-aed5-d403df96367f"
+								},
+								{
+									"key": "url",
+									"value": "https%3A%2F%2Fwww.tcharter.ir%2Ftickets%2Ftickets%2FVEhSLU1IRC0xNDAyLzA3LzAz%2F"
 								}
 							]
 						}
@@ -123,11 +519,16 @@
 									"key": "tab",
 									"value": "airplane",
 									"type": "text"
+								},
+								{
+									"key": "types",
+									"value": "[\"all\", \"system\", \"provider\", \"bclass\", \"economy\"]",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/tickets/TUhELVRIUi0xNDAyLzA1LzAz/?airplane&page=1",
+							"raw": "https://www.tcharter.ir/tickets/tickets/SUtBLU1IRC0xNDAyLzA1LzI5/?airplane=",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -137,17 +538,13 @@
 							"path": [
 								"tickets",
 								"tickets",
-								"TUhELVRIUi0xNDAyLzA1LzAz",
+								"SUtBLU1IRC0xNDAyLzA1LzI5",
 								""
 							],
 							"query": [
 								{
 									"key": "airplane",
-									"value": null
-								},
-								{
-									"key": "page",
-									"value": "1"
+									"value": ""
 								}
 							]
 						}
@@ -170,7 +567,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://www.tcharter.ir/tickets/tickets/TUhELVRIUi0xNDAyLzA1LzAz/?airplane=&page=7",
+							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLU1IRC0xNDAyLzA1LzA3?airplane=",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -180,8 +577,7 @@
 							"path": [
 								"tickets",
 								"tickets",
-								"TUhELVRIUi0xNDAyLzA1LzAz",
-								""
+								"VEhSLU1IRC0xNDAyLzA1LzA3"
 							],
 							"query": [
 								{
@@ -190,8 +586,101 @@
 								},
 								{
 									"key": "page",
-									"value": "7"
+									"value": "100",
+									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "page3",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "en-US,en;q=0.9"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded; charset=UTF-8"
+							},
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "Origin",
+								"value": "https://www.tcharter.ir"
+							},
+							{
+								"key": "Referer",
+								"value": "https://www.tcharter.ir/"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Linux\""
+							},
+							{
+								"key": "Cookie",
+								"value": "TCH=8ktqu1bpqr7u74p2tb5kchrnls; _gcl_au=1.1.849212697.1690208445; _ga=GA1.2.1776701195.1690208446; GoReferer=Q2FrZQ%3D%3D.NmE2M2Q5YTJhN2Q1NTdiYmM1OTQxYjViMDM1M2YzZGNlNzI2ODRhMTVmNTUxYWQ3MGEzMjNjNGQ2OWU2NDYwZDeixBmZO5NbPbNqjt%2FV4Fe3IL2zrpCYiZYptRB6iVFOrcL7zz19M4oW6AfqL%2FuhUc%2Bzrd5vEGhH%2FOubeUycnGPKRYXewiY9DI7vNfQuZxrb64cNvS29qkfVZGPxq39YvzYBpSdMVWvxjvLRcxw%2Bkfg10BuQ5f2bgJnreJJckINnfBmMJIP3R7pER2GVswO5Mtb8eZhkd0fU2%2BOxvkQ%2FaxCzquEBdHEQin973%2BJY5JqsPK9TfxPftVgwoGEdMUP4jIPlBoqlZDujI89BkFeK4bwDUF0Up90eLo3KI1Y6RuUqTjnUd%2BZ6GHVZqkNmRo1TkuyYF4fByuiEpve4cf31RJPYbd7oaaC4TU%2FKqc0qGc8AB%2BJOrym5FzT1PNgljwp80w%3D%3D; _gid=GA1.2.1145932475.1690760607; _gat=1; _ga_R30088QYSJ=GS1.2.1690763535.30.0.1690763535.60.0.0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "types=%5B%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane"
+						},
+						"url": {
+							"raw": "https://www.tcharter.ir/tickets/tickets/VEhSLUFXWi0xNDAyLzA2LzI1/",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tcharter",
+								"ir"
+							],
+							"path": [
+								"tickets",
+								"tickets",
+								"VEhSLUFXWi0xNDAyLzA2LzI1",
+								""
 							]
 						}
 					},
@@ -283,6 +772,29 @@
 							"key": "rand",
 							"value": "174"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy_tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.tcharter.ir/reservations/step1/airplane/58775696",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tcharter",
+						"ir"
+					],
+					"path": [
+						"reservations",
+						"step1",
+						"airplane",
+						"58775696"
 					]
 				}
 			},
