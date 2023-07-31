@@ -7,6 +7,9 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import pathlib
+
+BASE_PATH = pathlib.Path(__file__).parent.parent.parent
 
 BOT_NAME = "flight_tickets_scraper"
 
@@ -66,6 +69,8 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'flight_tickets_scraper.middlewares.ScrapeOpsFakeUserAgentMiddleware': 400,
+    'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
 }
 
 # Enable or disable extensions
@@ -106,9 +111,30 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
+# Sources ---
 
-# SCRAPEOPS settings.py
+SOURCES = {
+    "airport_city_codes_path": BASE_PATH.joinpath("source", "airport_city_codes.json"),
+    "rotating_proxy_list_path": BASE_PATH.joinpath("source", "proxies.txt"),
+}
+
+#Development ---
+
+DEVELOPMENT = {
+    "docker_compose_yml_file_path": BASE_PATH.joinpath("development", "docker-compose.yml"),
+}
+
+# FAKE_USER_AGENT settings ---
 
 SCRAPEOPS_API_KEY = '4f35d66f-c691-462b-aed5-d403df96367f'
 
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
+
+
+# Proxy Settings ---
+
+# ROTATING_PROXY_LIST = []
+
+ROTATING_PROXY_LIST_PATH = SOURCES["rotating_proxy_list_path"]
+
+ROTATING_PROXY_PAGE_RETRY_TIMES = 10
