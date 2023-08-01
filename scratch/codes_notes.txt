@@ -1,0 +1,98 @@
+scrapy.Request(
+    url=url,
+    callback=self.parse,
+    method=method,
+    body=json.dumps(payload),
+    cb_kwargs=cb_kwargs)
+
+
+SplashRequest(
+    url=url,
+    callback=self.parse,
+    method=method,
+    body=json.dumps(payload),
+    args={'wait': 1})
+
+
+scrapy.FormRequest(
+    url=next_page_url,
+    callback=self.parse_tickets_details,
+    method=method,
+    body=json.dumps(payload),
+    cb_kwargs=cb_kwargs)
+
+
+response.follow(
+    url=next_page_url,
+    callback=self.parse_tickets_details,
+    method=method,
+    body=json.dumps(payload),
+    cb_kwargs=cb_kwargs)
+
+
+self.parse_counter += 1
+
+
+#Splash Settings
+
+# Splash Server Endpoint
+SPLASH_URL = 'http://localhost:8050'
+
+
+# Enable Splash downloader middleware and change HttpCompressionMiddleware priority
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+
+# Enable Splash Deduplicate Args Filter
+SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+
+# Define the Splash DupeFilter
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+
+
+DEFAULT_REQUEST_HEADERS = {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-US, en",
+    "Connection": "keep-alive",
+    "Content-Length": 97,
+    "Content-Type": "application/x-www-form-urlencoded",
+    "DNT": 1,
+    "Host": "www.tcharter.ir",
+    "Origin": "https://www.tcharter.ir",
+    "Referer": "https://www.tcharter.ir/",
+    "Sec-Fetch-Dest": "empty",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "User-Agent": "Mozilla/5.0 (X11Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36",
+    "X-Requested-With": "XMLHttpRequest",
+    "sec-ch-ua": "Google Chrome",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "Linux"
+}
+
+def check_equal_THR_IKA(airports_codes):
+    return (airports_codes[0], airports_codes[1]) != ("THR", "IKA")
+
+def check_equal_IKA_THR(airports_codes):
+    return (airports_codes[0], airports_codes[1]) != ("IKA", "THR")
+
+lambda airports_codes: check_equal_THR_IKA(airports_codes) or check_equal_IKA_THR(airports_codes)), 
+
+class TorMiddleware(HttpProxyMiddleware):
+    def __init__(self, *args, **kwargs):
+        self.tor_port = 9050
+        super().__init__(*args, **kwargs)
+
+    def _set_new_ip(self, spider):
+        with Controller.from_port(port=self.tor_port) as controller:
+            controller.signal(Signal.NEWNYM)
+
+    def process_request(self, request, spider):
+        self._set_new_ip(spider)
+        request.meta['proxy'] = 'http://127.0.0.1:8118'
