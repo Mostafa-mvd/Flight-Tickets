@@ -5,10 +5,20 @@
 
 import requests
 
-from random import randint
 from urllib.parse import urlencode
+from random import randint
 
 from scrapy import signals
+from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
+
+from stem.control import Controller
+from stem import Signal
+from stem.util.log import get_logger
+
+
+logger = get_logger()
+logger.propagate = False
+
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
@@ -153,3 +163,21 @@ class ScrapeOpsFakeUserAgentMiddleware:
     def process_request(self, request, spider):
         random_user_agent = self._get_random_user_agent()
         request.headers['User-Agent'] = random_user_agent
+
+
+class TorMiddleware(HttpProxyMiddleware):
+    def __init__(self, *args, **kwargs):
+        self.tor_control_port = 9051
+        self.tor_password = "SigmaZ2015"
+        self.privoxy_url = 'http://127.0.0.1:8118'
+
+        super().__init__(*args, **kwargs)
+
+    def _set_new_ip(self, spider):
+        with Controller.from_port(port=self.tor_control_port) as controller:
+            controller.authenticate(password=self.tor_password)
+            controller.signal(Signal.NEWNYM)
+
+    def process_request(self, request, spider):
+        self._set_new_ip(spider)
+        request.meta['proxy'] = self.privoxy_url
