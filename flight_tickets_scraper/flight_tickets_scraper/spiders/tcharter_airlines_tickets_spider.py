@@ -106,20 +106,29 @@ class AirlinesTickets(scrapy.Spider):
 
             for ticket_detail_tr in ticket_detail_trs:
                 ticket_detail_tds = ticket_detail_tr.css("td")
+                ticket_extra_detail_url = ticket_detail_tr.css(".finishDescription a::attr(href)").get()
 
                 flight_ticket_item["company_name"] = ticket_detail_tds[0].css("::attr(data-hint)").get()
-                flight_ticket_item["arrival_time"] = ticket_detail_tds[1].css("::text").get()
+                flight_ticket_item["departure_time"] = ticket_detail_tds[1].css("::text").get()
                 flight_ticket_item["capacity"] = ticket_detail_tds[2].css("::text").get()
                 flight_ticket_item["flying_number"] = ticket_detail_tds[3].css("::text").get()
                 flight_ticket_item["flying_class"] = ticket_detail_tds[4].css("::text").get()
-                flight_ticket_item["ticket_price"] = ticket_detail_tds[6].css("::text").getall()[1].strip()
+                flight_ticket_item["ticket_price_T"] = ticket_detail_tds[6].css("::text").getall()[1].strip()
                 flight_ticket_item["flying_type"] = ticket_detail_tds[7].css("::text").getall()[1].strip()
 
-                flight_ticket_item["source"] = response.meta["source_city"]
-                flight_ticket_item["destination"] = response.meta["destination_city"]
-                flight_ticket_item["date"] = response.meta["date"]
+                flight_ticket_item["national_departure_code"] = response.meta["source_city"]
+                flight_ticket_item["national_arrival_code"] = response.meta["destination_city"]
+                flight_ticket_item["departure_date"] = response.meta["date"]
 
-                yield flight_ticket_item
+                flight_ticket_item_meta = {
+                    "flight_ticket_item": flight_ticket_item
+                }
+
+                yield scrapy.Request(
+                    url=ticket_extra_detail_url,
+                    callback=self.parse_extra_detail,
+                    method="GET",
+                    meta=flight_ticket_item_meta)
 
             #When parsed the all items in each page's tables comes here.
             response.meta["page_number"] += 1
@@ -140,3 +149,17 @@ class AirlinesTickets(scrapy.Spider):
                 body=self.curl_request_raw_payload,
                 cb_kwargs=cb_kwargs,
                 meta=response.meta)
+
+    def parse_extra_detail(self, response, **kwargs):
+        """fourth level of parsing for gathering tickets detail."""
+
+        ticket_item = response.meta["flight_ticket_item"]
+        ticket_extra_detail = response.css(".ps-2 div::text").get().strip()
+        splitted_detail = ticket_extra_detail.split()
+
+        ticket_item["arrival_time"] = splitted_detail[-3]
+        ticket_item["arrival_city_name_persian"] = splitted_detail[3]
+        ticket_item["departure_city_name_persian"] = splitted_detail[1]
+        ticket_item["departure_date_YMD_format"] = splitted_detail[6]
+
+        yield ticket_item
