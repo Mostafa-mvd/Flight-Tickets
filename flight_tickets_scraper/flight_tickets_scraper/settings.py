@@ -29,7 +29,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -121,9 +121,9 @@ SOURCES = {
 
 #Development ---
 
-DEVELOPMENT = {
-    "docker_compose_yml_file_path": BASE_PATH.joinpath("development", "docker-compose.yml"),
-}
+# DEVELOPMENT = {
+#     "docker_compose_yml_file_path": BASE_PATH.joinpath("development", "docker-compose.yml"),
+# }
 
 # FAKE_USER_AGENT settings ---
 
@@ -139,3 +139,10 @@ SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 # ROTATING_PROXY_LIST_PATH = SOURCES["rotating_proxy_list_path"]
 
 # ROTATING_PROXY_PAGE_RETRY_TIMES = 10
+
+# TOR Proxy Settings ---
+
+INTERMEDIATE_PROXY = 'http://127.0.0.1:8118' # privoxy
+TOR_DOWNLOAD_DELAY = 180
+TOR_CONTROL_PORT = 9051
+TOR_PASSWORD = "SigmaZ2015"
