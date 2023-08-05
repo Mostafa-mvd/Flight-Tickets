@@ -3,13 +3,14 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import logging
+import time
 import requests
 
 from urllib.parse import urlencode
 from random import randint
 
 from scrapy import signals
-from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
 
 from stem.control import Controller
 from stem import Signal
@@ -18,6 +19,8 @@ from stem.util.log import get_logger
 
 logger = get_logger()
 logger.propagate = False
+
+logging.basicConfig(filename="logfilename.log", level=logging.INFO)
 
 
 # useful for handling different item types with a single interface
@@ -165,19 +168,61 @@ class ScrapeOpsFakeUserAgentMiddleware:
         request.headers['User-Agent'] = random_user_agent
 
 
-class TorMiddleware(HttpProxyMiddleware):
-    def __init__(self, *args, **kwargs):
-        self.tor_control_port = 9051
-        self.tor_password = "SigmaZ2015"
-        self.privoxy_url = 'http://127.0.0.1:8118'
+class TorMiddleware:
+    def __init__(self, 
+                 intermediate_proxy_url: str, 
+                 tor_download_delay: int = 10, 
+                 tor_control_port: int = 9051, 
+                 tor_password: str = None) -> None:
+        
+        self.intermediate_proxy_url = intermediate_proxy_url
+        self.tor_download_delay = tor_download_delay
+        self.tor_control_port = tor_control_port
+        self.tor_password = tor_password
 
-        super().__init__(*args, **kwargs)
+        self.last_time_ip_changed = 0
+    
+    @classmethod
+    def from_crawler(cls, crawler):
+        settings = crawler.settings
 
-    def _set_new_ip(self, spider):
-        with Controller.from_port(port=self.tor_control_port) as controller:
+        intermediate_proxy_url = settings.get('INTERMEDIATE_PROXY')
+        tor_download_delay = settings.get('TOR_DOWNLOAD_DELAY')
+        tor_control_port = settings.get('TOR_CONTROL_PORT')
+        tor_password = settings.get('TOR_PASSWORD')
+
+        return cls(
+            intermediate_proxy_url,
+            tor_download_delay,
+            tor_control_port,
+            tor_password)
+
+    def _connect_to_tor(self):
+        controller = Controller.from_port(port=self.tor_control_port)
+
+        if self.tor_password:
             controller.authenticate(password=self.tor_password)
+        
+        logging.info('Connection to tor through control port is established.')
+
+        return controller
+    
+    def _change_ip_address(self):
+        with self._connect_to_tor() as controller:
             controller.signal(Signal.NEWNYM)
 
-    def process_request(self, request, spider):
-        self._set_new_ip(spider)
-        request.meta['proxy'] = self.privoxy_url
+            logging.info('Your tor ip changed.')
+
+        logging.info('Tor connection is closed now.\n')
+
+    def _set_new_ip(self) -> None:
+        self._change_ip_address()
+        self.last_time_ip_changed = time.time()
+
+    def process_request(self, request, spider) -> None:
+        now = time.time()
+
+        if now - self.last_time_ip_changed > self.tor_download_delay:
+            self._set_new_ip()
+
+        request.meta['proxy'] = self.intermediate_proxy_url
