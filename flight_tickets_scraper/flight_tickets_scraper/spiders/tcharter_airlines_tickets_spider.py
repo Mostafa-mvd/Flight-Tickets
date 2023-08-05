@@ -18,11 +18,11 @@ class AirlinesTickets(scrapy.Spider):
     curl_request_raw_payload = r'types=%5B%22all%22%2C%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane'
 
     def start_requests(self):
-        """send request for every possible combination of two city airports."""
+        """send request for every possible permutation of two city airports."""
 
-        combinations_result = two_permutation_airports_codes()
+        two_permutation_result = two_permutation_airports_codes()
 
-        for source, destination in combinations_result:
+        for source, destination in two_permutation_result:
             meta = {
                 "source_city": source,
                 "destination_city": destination
@@ -124,10 +124,12 @@ class AirlinesTickets(scrapy.Spider):
                     "flight_ticket_item": flight_ticket_item
                 }
 
+                method = "GET"
+
                 yield scrapy.Request(
                     url=ticket_extra_detail_url,
                     callback=self.parse_extra_detail,
-                    method="GET",
+                    method=method,
                     meta=flight_ticket_item_meta)
 
             #When parsed the all items in each page's tables comes here.
