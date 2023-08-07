@@ -3,6 +3,8 @@ from flight_tickets_scraper.utils import (
     filter_selectors,
 )
 
+from flight_tickets_scraper.requests_method_enum import RequestMethods
+
 from flight_tickets_scraper.items import FlightTicketsScraperItem
 
 import scrapy
@@ -13,10 +15,8 @@ class AirlinesTickets(scrapy.Spider):
     name = "airlines_tickets"
     allowed_domains = ["www.tcharter.ir"]
 
-    request_method = "POST"
     base_url = "https://www.tcharter.ir"
     curl_request_raw_payload = r'types=%5B%22all%22%2C%22system%22%2C%22provider%22%2C%22bclass%22%2C%22economy%22%5D&tab=airplane'
-
     item_id = 1
 
     def start_requests(self):
@@ -35,7 +35,7 @@ class AirlinesTickets(scrapy.Spider):
             yield scrapy.Request(
                 url=url,
                 callback=self.parse,
-                method=self.request_method,
+                method=RequestMethods.POST.value,
                 body=self.curl_request_raw_payload,
                 cb_kwargs=cb_kwargs)
 
@@ -62,7 +62,7 @@ class AirlinesTickets(scrapy.Spider):
                 yield scrapy.Request(
                     url=url,
                     callback=self.parse_airplane_dates_table,
-                    method=self.request_method,
+                    method=RequestMethods.POST.value,
                     body=json.dumps(request_payload),
                     cb_kwargs=response.cb_kwargs)
 
@@ -85,7 +85,7 @@ class AirlinesTickets(scrapy.Spider):
             yield scrapy.Request(
                 url=url,
                 callback=self.parse_tickets_table,
-                method=self.request_method,
+                method=RequestMethods.POST.value,
                 body=self.curl_request_raw_payload,
                 cb_kwargs=response.cb_kwargs)
 
@@ -132,12 +132,10 @@ class AirlinesTickets(scrapy.Spider):
                     "flight_ticket_item": flight_ticket_item
                 }
 
-                method = "GET"
-
                 yield scrapy.Request(
                     url=ticket_extra_detail_url,
                     callback=self.parse_extra_detail,
-                    method=method,
+                    method=RequestMethods.GET.value,
                     cb_kwargs=flight_ticket_item_cb_kwargs)
             else:
                 yield flight_ticket_item
@@ -153,7 +151,7 @@ class AirlinesTickets(scrapy.Spider):
         yield scrapy.Request(
             url=next_page_url,
             callback=self.parse_tickets_table,
-            method=self.request_method,
+            method=RequestMethods.POST.value,
             body=self.curl_request_raw_payload,
             cb_kwargs=response.cb_kwargs)
 
