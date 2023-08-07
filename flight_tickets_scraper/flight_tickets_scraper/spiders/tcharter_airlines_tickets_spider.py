@@ -22,9 +22,9 @@ class AirlinesTickets(scrapy.Spider):
     def start_requests(self):
         """send request for every possible permutation of two city airports."""
 
-        two_permutation_result = list(two_permutation_airports_codes())
+        two_permutation_result = two_permutation_airports_codes()
 
-        for source, destination in two_permutation_result[:2]:
+        for source, destination in two_permutation_result:
             cb_kwargs = {
                 "source_city": source,
                 "destination_city": destination
@@ -102,62 +102,60 @@ class AirlinesTickets(scrapy.Spider):
         if ticket_detail_blue_tr:
             ticket_detail_trs += ticket_detail_blue_tr
         
-        # if not then there is no selling tickets for the day we want.
-        if ticket_detail_trs:
-            for ticket_detail_tr in ticket_detail_trs:
-                flight_ticket_item = FlightTicketsScraperItem()
-                flight_ticket_item.set_all_default_value()
+        for ticket_detail_tr in ticket_detail_trs:
+            flight_ticket_item = FlightTicketsScraperItem()
+            flight_ticket_item.set_all_default_value()
 
-                ticket_detail_tds = ticket_detail_tr.css("td")
+            ticket_detail_tds = ticket_detail_tr.css("td")
 
-                flight_ticket_item["company_name"] = ticket_detail_tds[0].css("::attr(data-hint)").get()
-                flight_ticket_item["departure_time"] = ticket_detail_tds[1].css("::text").get()
-                flight_ticket_item["capacity"] = ticket_detail_tds[2].css("::text").get()
-                flight_ticket_item["flying_number"] = ticket_detail_tds[3].css("::text").get()
-                flight_ticket_item["flying_class"] = ticket_detail_tds[4].css("::text").get()
-                flight_ticket_item["ticket_price_T"] = ticket_detail_tds[6].css("::text").getall()[1].strip()
-                flight_ticket_item["flying_type"] = ticket_detail_tds[7].css("::text").getall()[1].strip()
+            flight_ticket_item["company_name"] = ticket_detail_tds[0].css("::attr(data-hint)").get()
+            flight_ticket_item["departure_time"] = ticket_detail_tds[1].css("::text").get()
+            flight_ticket_item["capacity"] = ticket_detail_tds[2].css("::text").get()
+            flight_ticket_item["flying_number"] = ticket_detail_tds[3].css("::text").get()
+            flight_ticket_item["flying_class"] = ticket_detail_tds[4].css("::text").get()
+            flight_ticket_item["ticket_price_T"] = ticket_detail_tds[6].css("::text").getall()[1].strip()
+            flight_ticket_item["flying_type"] = ticket_detail_tds[7].css("::text").getall()[1].strip()
 
-                flight_ticket_item["national_departure_code"] = response.cb_kwargs["source_city"]
-                flight_ticket_item["national_arrival_code"] = response.cb_kwargs["destination_city"]
-                flight_ticket_item["departure_date"] = response.cb_kwargs["date"]
+            flight_ticket_item["national_departure_code"] = response.cb_kwargs["source_city"]
+            flight_ticket_item["national_arrival_code"] = response.cb_kwargs["destination_city"]
+            flight_ticket_item["departure_date"] = response.cb_kwargs["date"]
 
-                flight_ticket_item["ticket_id"] = self.item_id
-                self.item_id += 1
+            flight_ticket_item["ticket_id"] = self.item_id
+            self.item_id += 1
 
-                ticket_extra_detail_url = ticket_detail_tds[7].css(".finishDescription a::attr(href)").get()
+            ticket_extra_detail_url = ticket_detail_tds[7].css(".finishDescription a::attr(href)").get()
 
-                if (flight_ticket_item["flying_type"] and 
-                    'go' not in ticket_extra_detail_url.split("/")):
+            if (flight_ticket_item["flying_type"] and 
+                'go' not in ticket_extra_detail_url.split("/")):
 
-                        flight_ticket_item_cb_kwargs = {
-                            "flight_ticket_item": flight_ticket_item
-                        }
+                flight_ticket_item_cb_kwargs = {
+                    "flight_ticket_item": flight_ticket_item
+                }
 
-                        method = "GET"
+                method = "GET"
 
-                        yield scrapy.Request(
-                            url=ticket_extra_detail_url,
-                            callback=self.parse_extra_detail,
-                            method=method,
-                            cb_kwargs=flight_ticket_item_cb_kwargs)
-                else:
-                    yield flight_ticket_item
+                yield scrapy.Request(
+                    url=ticket_extra_detail_url,
+                    callback=self.parse_extra_detail,
+                    method=method,
+                    cb_kwargs=flight_ticket_item_cb_kwargs)
+            else:
+                yield flight_ticket_item
 
-            #When parsed the all items in each page's tables comes here.
-            response.cb_kwargs["page_number"] += 1
-            next_page_number = response.cb_kwargs["page_number"]
+        #When parsed the all items in each page's tables comes here.
+        response.cb_kwargs["page_number"] += 1
+        next_page_number = response.cb_kwargs["page_number"]
 
-            city_airline_date_code = response.cb_kwargs["city_airline_date_code"]
+        city_airline_date_code = response.cb_kwargs["city_airline_date_code"]
 
-            next_page_url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}?page={next_page_number}"
+        next_page_url = f"{self.base_url}/tickets/tickets/{city_airline_date_code}?page={next_page_number}"
                 
-            yield scrapy.Request(
-                url=next_page_url,
-                callback=self.parse_tickets_table,
-                method=self.request_method,
-                body=self.curl_request_raw_payload,
-                cb_kwargs=response.cb_kwargs)
+        yield scrapy.Request(
+            url=next_page_url,
+            callback=self.parse_tickets_table,
+            method=self.request_method,
+            body=self.curl_request_raw_payload,
+            cb_kwargs=response.cb_kwargs)
 
     def parse_extra_detail(self, response, **kwargs):
         """fourth level of parsing for gathering tickets detail."""
