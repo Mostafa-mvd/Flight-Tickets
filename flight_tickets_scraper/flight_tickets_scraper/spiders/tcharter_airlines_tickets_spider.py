@@ -92,7 +92,12 @@ class AirlinesTickets(scrapy.Spider):
     def parse_tickets_table(self, response, **kwargs):
         """third level of parsing for gathering tickets information."""
 
-        if response.body == b"error":
+        # if there is no next pages then response is "error", or
+        # if status code response of server is 500, or
+        # table existence then there is no tickets for the day we want.
+        if (response.body == b"error" or
+            response.status == 500 or
+            not response.css("table").get()):
             return None
 
         tickets_table = response.css('.table.main-ticket-list tbody')
@@ -100,7 +105,12 @@ class AirlinesTickets(scrapy.Spider):
         ticket_detail_blue_tr = tickets_table.css(".blue-light")
 
         if ticket_detail_blue_tr:
-            ticket_detail_trs += ticket_detail_blue_tr
+            ticket_detail_trs.extend(ticket_detail_blue_tr)
+        
+        #TODO: this condition is for testing of existence of ticket rows when our table is existing in page.
+        if not ticket_detail_trs:
+            self.logger.info("No green, blue or white light ticket rows exist in ticket table.")
+            return None
         
         for ticket_detail_tr in ticket_detail_trs:
             flight_ticket_item = FlightTicketsScraperItem()
@@ -159,12 +169,14 @@ class AirlinesTickets(scrapy.Spider):
         """fourth level of parsing for gathering tickets detail."""
 
         flight_ticket_item = response.cb_kwargs["flight_ticket_item"]
-        ticket_extra_detail = response.css(".ps-2 div::text").get().strip()
-        splitted_detail = ticket_extra_detail.split()
+        ticket_extra_detail = response.css(".ps-2 div::text").get()
 
-        flight_ticket_item["arrival_time"] = splitted_detail[-3]
-        flight_ticket_item["arrival_city_name_persian"] = splitted_detail[3]
-        flight_ticket_item["departure_city_name_persian"] = splitted_detail[1]
-        flight_ticket_item["departure_date_YMD_format"] = splitted_detail[6]
+        if ticket_extra_detail:
+            splitted_ticket_extra_detail = ticket_extra_detail.strip().split()
+
+            flight_ticket_item["arrival_time"] = splitted_ticket_extra_detail[-3]
+            flight_ticket_item["arrival_city_name_persian"] = splitted_ticket_extra_detail[3]
+            flight_ticket_item["departure_city_name_persian"] = splitted_ticket_extra_detail[1]
+            flight_ticket_item["departure_date_YMD_format"] = splitted_ticket_extra_detail[6]
 
         yield flight_ticket_item
