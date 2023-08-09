@@ -183,6 +183,7 @@ class TorMiddleware:
         self.tor_password = tor_password
 
         self.last_time_ip_changed = 0
+        self.tmp_tor_changing_ip_delay_sec = self.tor_changing_ip_delay_sec
     
     @classmethod
     def from_crawler(cls, crawler):
@@ -229,7 +230,7 @@ class TorMiddleware:
 
         spider.logger.info(f'Tor exit node ip: {current_tor_ip}\n')
 
-        self._set_tor_randomize_changing_ip_delay_or_fixed()
+        self._set_tor_randomize_changing_ip_delay_sec_or_fixed()
 
         self.last_time_ip_changed = time.time()
     
@@ -244,11 +245,11 @@ class TorMiddleware:
         
         return response.text.strip()
     
-    def _set_tor_randomize_changing_ip_delay_or_fixed(self):
+    def _set_tor_randomize_changing_ip_delay_sec_or_fixed(self):
         if self.tor_randomize_changing_ip_delay:
-            self.tor_randomize_changing_ip_delay = self._choose_random_number_between(
-                0.5 * self.tor_randomize_changing_ip_delay,
-                1.5 * self.tor_randomize_changing_ip_delay)
+            self.tmp_tor_changing_ip_delay_sec = self._choose_random_number_between(
+                0.5 * self.tor_changing_ip_delay_sec,
+                1.5 * self.tor_changing_ip_delay_sec)
 
     def _choose_random_number_between(self, min_number, max_number):
         return round(random.uniform(min_number, max_number), 1)
@@ -256,7 +257,7 @@ class TorMiddleware:
     def process_request(self, request, spider) -> None:
         now = time.time()
 
-        if now - self.last_time_ip_changed > self.tor_changing_ip_delay_sec:
+        if now - self.last_time_ip_changed > self.tmp_tor_changing_ip_delay_sec:
             self._set_new_ip(spider)
 
         request.meta['proxy'] = self.intermediate_proxy_url
