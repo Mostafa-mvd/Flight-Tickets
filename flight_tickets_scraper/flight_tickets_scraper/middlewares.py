@@ -3,6 +3,7 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import random
 import time
 import requests
 
@@ -169,14 +170,16 @@ class TorMiddleware:
     def __init__(self, 
                  intermediate_proxy_url: str, 
                  ip_checker_site: str,
-                 tor_download_delay: int = 10, 
+                 tor_changing_ip_delay_sec: int = 10,
                  tor_control_port: int = 9051, 
+                 tor_randomize_changing_ip_delay: bool = False,
                  tor_password: str = None) -> None:
         
         self.intermediate_proxy_url = intermediate_proxy_url
         self.ip_checker_site = ip_checker_site
-        self.tor_download_delay = tor_download_delay
+        self.tor_changing_ip_delay_sec = tor_changing_ip_delay_sec
         self.tor_control_port = tor_control_port
+        self.tor_randomize_changing_ip_delay = tor_randomize_changing_ip_delay
         self.tor_password = tor_password
 
         self.last_time_ip_changed = 0
@@ -187,15 +190,17 @@ class TorMiddleware:
 
         intermediate_proxy_url = settings.get('INTERMEDIATE_PROXY')
         ip_checker_site = settings.get("IP_CHECKER_SITE")
-        tor_download_delay = settings.get('TOR_DOWNLOAD_DELAY')
+        tor_changing_ip_delay_sec = settings.get('TOR_CHANGING_IP_DELAY_SEC')
         tor_control_port = settings.get('TOR_CONTROL_PORT')
+        tor_randomize_changing_ip_delay = settings.get('TOR_RANDOMIZE_CHANGING_IP_DELAY')
         tor_password = settings.get('TOR_PASSWORD')
 
         return cls(
             intermediate_proxy_url,
             ip_checker_site,
-            tor_download_delay,
+            tor_changing_ip_delay_sec,
             tor_control_port,
+            tor_randomize_changing_ip_delay,
             tor_password)
 
     def _connect_to_tor(self, spider):
@@ -203,8 +208,9 @@ class TorMiddleware:
 
         if self.tor_password:
             controller.authenticate(password=self.tor_password)
+            spider.logger.debug('Authentication has done correctly.')
         
-        spider.logger.info('Connection to tor through control port is established.')
+        spider.logger.debug('Connection to tor through control port is established.')
 
         return controller
     
@@ -212,9 +218,9 @@ class TorMiddleware:
         with self._connect_to_tor(spider) as controller:
             controller.signal(Signal.NEWNYM)
 
-            spider.logger.info('Your tor ip changed.')
+            spider.logger.debug('Your tor ip changed.')
 
-        spider.logger.info('Tor connection is closed now.')
+        spider.logger.debug('Tor connection is closed now.')
 
     def _set_new_ip(self, spider) -> None:
         self._change_ip_address(spider)
@@ -222,6 +228,8 @@ class TorMiddleware:
         current_tor_ip = self._exit_tor_node_ip_address()
 
         spider.logger.info(f'Tor exit node ip: {current_tor_ip}\n')
+
+        self._set_tor_randomize_changing_ip_delay_or_fixed()
 
         self.last_time_ip_changed = time.time()
     
@@ -235,11 +243,20 @@ class TorMiddleware:
             proxies=proxy)
         
         return response.text.strip()
+    
+    def _set_tor_randomize_changing_ip_delay_or_fixed(self):
+        if self.tor_randomize_changing_ip_delay:
+            self.tor_randomize_changing_ip_delay = self._choose_random_number_between(
+                0.5 * self.tor_randomize_changing_ip_delay,
+                1.5 * self.tor_randomize_changing_ip_delay)
+
+    def _choose_random_number_between(self, min_number, max_number):
+        return round(random.uniform(min_number, max_number), 1)
 
     def process_request(self, request, spider) -> None:
         now = time.time()
 
-        if now - self.last_time_ip_changed > self.tor_download_delay:
+        if now - self.last_time_ip_changed > self.tor_changing_ip_delay_sec:
             self._set_new_ip(spider)
 
         request.meta['proxy'] = self.intermediate_proxy_url
