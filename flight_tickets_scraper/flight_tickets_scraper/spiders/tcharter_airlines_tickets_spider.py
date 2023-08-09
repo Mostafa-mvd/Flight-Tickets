@@ -107,11 +107,6 @@ class AirlinesTickets(scrapy.Spider):
         if ticket_detail_blue_tr:
             ticket_detail_trs.extend(ticket_detail_blue_tr)
         
-        #TODO: this condition is for testing of existence of ticket rows when our table is existing in page.
-        if not ticket_detail_trs:
-            self.logger.info("No green, blue or white light ticket rows exist in ticket table.")
-            return None
-        
         for ticket_detail_tr in ticket_detail_trs:
             flight_ticket_item = FlightTicketsScraperItem()
             flight_ticket_item.set_all_default_value()
