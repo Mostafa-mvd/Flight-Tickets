@@ -1,0 +1,17 @@
+
+# if True then there is null value in your column, otherwise there is not null values in your column
+
+arrival_city_name_persian: False
+national_arrival_code: False
+departure_city_name_persian: False
+national_departure_code: False
+departure_date: False
+departure_date_YMD_format: False
+capacity: True
+arrival_time: True
+company_name: False
+departure_time: False
+flying_class: False
+flying_number: False
+flying_type: True
+ticket_price_T: False
