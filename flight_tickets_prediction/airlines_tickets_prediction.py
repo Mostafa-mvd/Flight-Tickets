@@ -1,4 +1,5 @@
 import json
+from matplotlib import pyplot as plt
 
 
 def get_city_codes_dict(json_file_path):
@@ -52,3 +53,24 @@ def update_dependent_col(main_df, func, x_col_name, y_col_name, your_dict):
         axis=1)
 
     return main_df
+
+
+def move_columns(main_df, cols_name):
+    for idx, col_name in enumerate(cols_name):
+        column_to_move = main_df.pop(col_name)
+        main_df.insert(idx, col_name, column_to_move)
+    return main_df
+
+
+def replace_with(col_df, origin_value, replacement_value, type_value=None):
+    col_df = col_df.replace(origin_value, replacement_value)
+
+    if type_value:
+        col_df = col_df.astype(float)
+    
+    return col_df
+
+
+def check_col_distribution(col_df):
+    col_df.hist()
+    plt.show()
