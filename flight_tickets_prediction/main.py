@@ -22,6 +22,8 @@ columns_need_to_move = [
     "national_departure_code",
     "departure_date",
     "departure_date_YMD_format",
+    "departure_time",
+    "arrival_time",
     "capacity",
 ]
 
@@ -74,6 +76,8 @@ df = update_dependent_col(
     month_dict)
 
 df = df.drop_duplicates()
+
+df = df.sort_values(by=['departure_date_YMD_format', 'departure_time', 'arrival_time'], ascending=True)
 
 df = move_columns(
     df,
