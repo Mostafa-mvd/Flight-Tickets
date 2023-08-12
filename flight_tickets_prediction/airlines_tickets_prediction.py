@@ -55,10 +55,14 @@ def update_dependent_col(main_df, func, x_col_name, y_col_name, your_dict):
     return main_df
 
 
-def move_columns(main_df, cols_name):
-    for idx, col_name in enumerate(cols_name):
+def change_field_value_to_en(x_field, localization_dict):
+    return localization_dict[x_field]
+
+
+def move_columns(main_df, cols_dict):
+    for col_name, next_position in cols_dict.items():
         column_to_move = main_df.pop(col_name)
-        main_df.insert(idx, col_name, column_to_move)
+        main_df.insert(next_position, col_name, column_to_move)
     return main_df
 
 
