@@ -1,0 +1,46 @@
+{
+    "type1": {
+        "مشهد": {
+            "en_city_name": "Mashhad",
+            "region": "Razavi Khorasan",
+            "country_code": "IR",
+            "airports_info": [
+                {
+                    "code": "MHD",
+                    "en_airport_name": "Shahid Hasheminejad",
+                    "persian_airport_name": "شهید هاشمی نژاد"
+                }
+            ]
+        }
+    },
+    "types2": {
+        "تهران": [
+            {
+                "airport_code": "THR",
+                "en_city_name": "Tehran",
+                "persian_airport_name": "مهرآباد",
+                "en_airport_name": "Mehrabad",
+                "region": "Tehran",
+                "country_code": "IR"
+            },
+            {
+                "airport_code": "IKA",
+                "en_city_name": "Tehran",
+                "persian_airport_name": "امام خمینی",
+                "en_airport_name": "Imam Khomeini",
+                "region": "Tehran",
+                "country_code": "IR"
+            }
+        ]
+    },
+    "types3": {
+        "تهران (امام خمینی)": {
+            "airport_code": "IKA",
+            "en_airport_name": "Tehran Imam Khomeini",
+            "region": "Tehran",
+            "country_code": "IR",
+            "en_city_name": "Tehran",
+            "fa_city_name": "تهران"
+        }
+    }
+}
