@@ -4,7 +4,9 @@ flight_tickets_analysis
 It is a data science project for predicting the lowest ticket price in a certain period of time.
 
 First -> Scraped from tcharter.ir
+
 Second -> Pre-processing of data I gathered.
+
 Third -> Phase of training model and predicting.
 
 Project Organization
