@@ -5,17 +5,18 @@ from hazm import Normalizer
 
 from settings import (SOURCES, COLUMNS_NEED_TO_MOVE)
 
-from preprocessing import (extract_values_from_json_obj,
-                           get_json_obj,
-                           change_city_names_to_en,
+from preprocessing import (change_city_names_to_en,
                            get_city_airport_names,
-                           create_flatten_dict,
                            update_city_persian_name_fields,
                            update_departure_date_YMD_format_fields,
                            update_dependent_col,
                            semi_space_correction,
                            move_columns,
                            replace_with)
+
+from common_utils.utils import (get_json_obj, 
+                                extract_values_from_json_obj, 
+                                create_flatten_dict)
 
 
 MONTH_DICT = get_json_obj(SOURCES["months_json_file_path"])
