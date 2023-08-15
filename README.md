@@ -1,15 +1,15 @@
-flight_tickets_analysis
+**flight_tickets_analysis**
 ==============================
 
 It is a data science project for predicting the lowest ticket price in a certain period of time.
 
-First       <- Scraped from tcharter.ir
+1. Scraped from tcharter.ir
 
-Second      <- Pre-processing of data I gathered.
+2. Pre-processing of data I gathered.
 
-Third       <- Phase of training model and predicting.
+3. Phase of training model and predicting.
 
-Project Organization
+**Project Organization Hierarchy**
 ------------
 
     ├── data
@@ -45,8 +45,25 @@ Project Organization
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
-
-
 --------
+
+**How to run this project:**
+
+1- Create virtual environment
+
+2- Go to development dir and install dependencies with:
+```
+$ pip install -r requirements.txt
+```
+
+3- Go to data/common_utils and install it with:
+```
+$ pip install .
+```
+
+> [!NOTE]
+> this is my common utils between flight_ticket_preprocessing and flight_tickets_scraper
+
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
