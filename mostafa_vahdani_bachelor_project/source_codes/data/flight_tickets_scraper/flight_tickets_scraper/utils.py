@@ -1,32 +1,14 @@
-from itertools import permutations
-
 from scrapy.utils.project import get_project_settings
-
-from json import load
-
-
-settings = get_project_settings()
-
-
-def get_json_key_value(json_file_path, key):
-    json_file_handler = open(json_file_path)
-    airports_city = load(json_file_handler)
-    airports_codes = airports_city[key]
-
-    json_file_handler.close()
-
-    return airports_codes
+from common_utils.utils import get_json_obj, extract_values_from_json_obj
+from itertools import permutations
 
 
 def two_permutation_airports_codes():
+    settings = get_project_settings()
     json_file_path = settings.get("SOURCES")["airport_city_codes_path"]
-    json_key = "CityCodes"
 
-    airports_city_codes_lst = get_json_key_value(json_file_path, json_key)
-    
-    airports_codes_lst = [airport_city_code_dict["id"]
-                          for airport_city_code_dict in airports_city_codes_lst]
-    
+    jsn_obj = get_json_obj(json_file_path)
+    airports_codes_lst = extract_values_from_json_obj(jsn_obj, "id")
     two_permutation_codes = permutations(airports_codes_lst, 2)
 
     return two_permutation_codes

@@ -7,9 +7,13 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
 import pathlib
+from dotenv import load_dotenv
 
-STATIC_BASE_PATH = pathlib.Path(__file__).parent.parent.parent
+load_dotenv()
+
+BASE_PATH = pathlib.Path(__file__).parent.parent.parent
 
 BOT_NAME = "flight_tickets_scraper"
 
@@ -21,7 +25,7 @@ NEWSPIDER_MODULE = "flight_tickets_scraper.spiders"
 #USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -30,10 +34,12 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 3.75
-# Enable randomizing the delay
+
+# Using RANDOMIZE_DOWNLOAD_DELAY to enable randomizing the delay
 # MinSec = 0.5 * DOWNLOAD_DELAY
 # MaxSec = 1.5 * DOWNLOAD_DELAY
 RANDOMIZE_DOWNLOAD_DELAY = True
+
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -118,32 +124,22 @@ FEED_EXPORT_ENCODING = "utf-8"
 # Sources ---
 
 SOURCES = {
-    "airport_city_codes_path": STATIC_BASE_PATH.joinpath("static", "airport_city_codes.json"),
+    "airport_city_codes_path": BASE_PATH.joinpath("static", "airport_city_codes.json"),
 }
 
 # FAKE_USER_AGENT settings ---
 
-SCRAPEOPS_API_KEY = '4f35d66f-c691-462b-aed5-d403df96367f'
+SCRAPEOPS_API_KEY = os.getenv("SCRAPEOPS_API_KEY")
 
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
-
-
-# Proxy Settings ---
-
-# ROTATING_PROXY_LIST = []
-
-# ROTATING_PROXY_LIST_PATH = SOURCES["rotating_proxy_list_path"]
-
-# ROTATING_PROXY_PAGE_RETRY_TIMES = 10
 
 # TOR Proxy Settings ---
 
 INTERMEDIATE_PROXY = 'http://127.0.0.1:8118' # Privoxy
 IP_CHECKER_SITE = "http://icanhazip.com/"
 
-TOR_PASSWORD = "SigmaZ2015"
+TOR_PASSWORD = os.getenv("TOR_PASSWORD")
 
 TOR_RANDOMIZE_CHANGING_IP_DELAY = True
-
 TOR_CHANGING_IP_DELAY_SEC = 120
 TOR_CONTROL_PORT = 9051
