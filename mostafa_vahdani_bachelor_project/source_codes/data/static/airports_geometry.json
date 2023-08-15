@@ -1,0 +1,389 @@
+[
+    {
+        "Mashhad International Airport": {
+            "lat": 36.2340908,
+            "lng": 59.6418668
+        }
+    },
+    {
+        "Mehrabad International Airport": {
+            "lat": 35.6900662,
+            "lng": 51.3022286
+        }
+    },
+    {
+        "Imam Khomeini International Airport": {
+            "lat": 35.4164909,
+            "lng": 51.1447609
+        }
+    },
+    {
+        "Isfahan International Airport": {
+            "lat": 32.7614539,
+            "lng": 51.8888508
+        }
+    },
+    {
+        "Kish International Airport": {
+            "lat": 26.5299696,
+            "lng": 53.975013
+        }
+    },
+    {
+        "General Soleimani International Airport": {
+            "lat": 31.3375148,
+            "lng": 48.7618376
+        }
+    },
+    {
+        "Shahid Dastgheib International Airport of Shiraz": {
+            "lat": 29.5413935,
+            "lng": 52.5811635
+        }
+    },
+    {
+        "Abadan international Airport": {
+            "lat": 30.3668469,
+            "lng": 48.2284395
+        }
+    },
+    {
+        "Airport Sahand": {
+            "lat": 37.3477904,
+            "lng": 46.1241049
+        }
+    },
+    {
+        "Adnan Menderes Airport": {
+            "lat": 38.2895932,
+            "lng": 27.1588197
+        }
+    },
+    {
+        "Ardabil Airport": {
+            "lat": 38.323679,
+            "lng": 48.4172786
+        }
+    },
+    {
+        "Aghajari NIOC Airport": {
+            "lat": 30.7438644,
+            "lng": 49.6794396
+        }
+    },
+    {
+        "Almaty International Airport": {
+            "lat": 43.3556863,
+            "lng": 77.0425838
+        }
+    },
+    {
+        "Antalya Airport": {
+            "lat": 36.8999424,
+            "lng": 30.7981914
+        }
+    },
+    {
+        "Yazd Shahid Sadooghi International Airport": {
+            "lat": 31.9013104,
+            "lng": 54.2822101
+        }
+    },
+    {
+        "Beirut\u2013Rafic Hariri International Airport": {
+            "lat": 33.8184914,
+            "lng": 35.4909121
+        }
+    },
+    {
+        "Baghdad International Airport": {
+            "lat": 33.2636461,
+            "lng": 44.2236202
+        }
+    },
+    {
+        "Milas\u2013Bodrum Airport": {
+            "lat": 37.2495253,
+            "lng": 27.6721281
+        }
+    },
+    {
+        "Bandar Abbas International Airport": {
+            "lat": 27.2220364,
+            "lng": 56.3785686
+        }
+    },
+    {
+        "Batumi International Airport": {
+            "lat": 41.6093905,
+            "lng": 41.6006137
+        }
+    },
+    {
+        "Bushehr Airport": {
+            "lat": 28.9572989,
+            "lng": 50.8229405
+        }
+    },
+    {
+        "Guangzhou Baiyun International Airport": {
+            "lat": 23.3920026,
+            "lng": 113.3011824
+        }
+    },
+    {
+        "Charles de Gaulle International Airport": {
+            "lat": 49.0068908,
+            "lng": 2.571082
+        }
+    },
+    {
+        "Damascus International Airport": {
+            "lat": 33.4101971,
+            "lng": 36.5240588
+        }
+    },
+    {
+        "Dezful Airport": {
+            "lat": 32.4401058,
+            "lng": 48.385778
+        }
+    },
+    {
+        "Denizli \u00c7ardak Airport": {
+            "lat": 37.7860347,
+            "lng": 29.6973403
+        }
+    },
+    {
+        "Dubai International Airport": {
+            "lat": 25.2521287,
+            "lng": 55.3657156
+        }
+    },
+    {
+        "Ercan International Airport": {
+            "lat": 35.1520587,
+            "lng": 33.503636
+        }
+    },
+    {
+        "Esenbo\u011fa International Airport": {
+            "lat": 40.1230634,
+            "lng": 32.9987209
+        }
+    },
+    {
+        "Zvartnots International Airport": {
+            "lat": 40.1493974,
+            "lng": 44.4018985
+        }
+    },
+    {
+        "Roma-Fiumicino Airport": {
+            "lat": 41.8153413,
+            "lng": 12.2265051
+        }
+    },
+    {
+        "Frankfurt Airport": {
+            "lat": 50.0229432,
+            "lng": 8.5249373
+        }
+    },
+    {
+        "Gorgan International Airport": {
+            "lat": 36.9121665,
+            "lng": 54.3981105
+        }
+    },
+    {
+        "Qeshm International Airport": {
+            "lat": 26.753172,
+            "lng": 55.8991771
+        }
+    },
+    {
+        "Heydar Aliyev International Airport": {
+            "lat": 40.4728104,
+            "lng": 50.0490975
+        }
+    },
+    {
+        "Gazipa\u015fa-Alanya Airport": {
+            "lat": 36.2988059,
+            "lng": 32.2971821
+        }
+    },
+    {
+        "Isparta S\u00fcleyman Demirel Airport": {
+            "lat": 37.856023,
+            "lng": 30.367304
+        }
+    },
+    {
+        "Istanbul Airport": {
+            "lat": 41.2753227,
+            "lng": 28.7322692
+        }
+    },
+    {
+        "Sulaimaniyah International Airport": {
+            "lat": 35.5614111,
+            "lng": 45.3170114
+        }
+    },
+    {
+        "Jahrom Airport": {
+            "lat": 28.5865449,
+            "lng": 53.5799617
+        }
+    },
+    {
+        "Kerman Ayatollah Hashemi Rafsanjani International Airport": {
+            "lat": 30.2818031,
+            "lng": 56.9498517
+        }
+    },
+    {
+        "Khorramabad Airport": {
+            "lat": 33.4358783,
+            "lng": 48.2838591
+        }
+    },
+    {
+        "Shahid Ashrafi Esfahani Airport": {
+            "lat": 34.3475567,
+            "lng": 47.1689136
+        }
+    },
+    {
+        "Kuwait International Airport": {
+            "lat": 29.2202681,
+            "lng": 47.9551556
+        }
+    },
+    {
+        "Pulkovo Airport": {
+            "lat": 59.8016986,
+            "lng": 30.2676011
+        }
+    },
+    {
+        "Larestan International Airport": {
+            "lat": 27.6729706,
+            "lng": 54.3860475
+        }
+    },
+    {
+        "Muscat International Airport": {
+            "lat": 23.5994728,
+            "lng": 58.2738006
+        }
+    },
+    {
+        "Al Najaf International Airport": {
+            "lat": 31.9892564,
+            "lng": 44.4037338
+        }
+    },
+    {
+        "Noshahr Airport": {
+            "lat": 36.6633603,
+            "lng": 51.4652109
+        }
+    },
+    {
+        "Urmia International Airport": {
+            "lat": 37.6716605,
+            "lng": 45.0711952
+        }
+    },
+    {
+        "Persian Gulf International Airport": {
+            "lat": 27.3787641,
+            "lng": 52.7397368
+        }
+    },
+    {
+        "Rasht Airport": {
+            "lat": 37.3240208,
+            "lng": 49.6103959
+        }
+    },
+    {
+        "Sabiha G\u00f6k\u00e7en Havaliman\u0131": {
+            "lat": 40.8929501,
+            "lng": 29.293503
+        }
+    },
+    {
+        "SHJ Departures Terminal": {
+            "lat": 25.32115,
+            "lng": 55.5204016
+        }
+    },
+    {
+        "Sari Dasht-e-Naz International Airport": {
+            "lat": 36.6464062,
+            "lng": 53.1879177
+        }
+    },
+    {
+        "Sheremetyevo International Airport": {
+            "lat": 55.9760876,
+            "lng": 37.4238008
+        }
+    },
+    {
+        "Shota Rustaveli Tbilisi International Airport": {
+            "lat": 41.6700546,
+            "lng": 44.9544802
+        }
+    },
+    {
+        "Tabriz International Airport": {
+            "lat": 38.1355697,
+            "lng": 46.2460114
+        }
+    },
+    {
+        "Vienna International Airport": {
+            "lat": 48.1049967,
+            "lng": 16.5848987
+        }
+    },
+    {
+        "Vnukovo International Airport": {
+            "lat": 55.5995278,
+            "lng": 37.2735752
+        }
+    },
+    {
+        "Birjand Shahid Kaveh International Airport": {
+            "lat": 32.8997377,
+            "lng": 59.2641002
+        }
+    },
+    {
+        "Yasuj Airport": {
+            "lat": 30.7027177,
+            "lng": 51.5478009
+        }
+    },
+    {
+        "Flughafen Zahedan": {
+            "lat": 29.475746,
+            "lng": 60.9005087
+        }
+    },
+    {
+        "Konarak Airport": {
+            "lat": 25.4439418,
+            "lng": 60.3836187
+        }
+    },
+    {
+        "Total Length": 64
+    }
+]
