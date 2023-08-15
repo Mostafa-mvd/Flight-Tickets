@@ -1,5 +1,9 @@
 
+import os
 import pathlib
+from dotenv import load_dotenv
+
+load_dotenv()
 
 DATASET_BASE_PATH = pathlib.Path(__file__).parent.parent.parent.parent
 PROJECT_BASE_PATH = pathlib.Path(__file__).parent.parent
@@ -9,8 +13,10 @@ SOURCES = {
     "dataset_file_path_from": DATASET_BASE_PATH.joinpath("data", "raw", "flight_tickets_dataset.csv"),
     "dataset_file_path_to": DATASET_BASE_PATH.joinpath("data", "processed", "flight_tickets_dataset.csv"),
     # statics
+    "static_dir_path": PROJECT_BASE_PATH.joinpath("static"),
     "airport_codes_json_file_path": PROJECT_BASE_PATH.joinpath("static", "airport_city_codes.json"),
     "airports_info_json_file_path": PROJECT_BASE_PATH.joinpath("static", "airports_info.json"),
+    "airports_geometry_json_file_path": PROJECT_BASE_PATH.joinpath("static", "airports_geometry.json"),
     "months_json_file_path": PROJECT_BASE_PATH.joinpath("static", "months.json"),
 }
 
@@ -27,3 +33,5 @@ COLUMNS_NEED_TO_MOVE = {
     "arrival_time": 9,
     "capacity": 10,
 }
+
+OPENCAGEDATA_API_KEY = os.getenv("OPENCAGEDATA_API_KEY")
