@@ -1,517 +1,451 @@
-[
-    {
+{
+    "MHD": {
         "aeroway_name": "Mashhad International Airport",
-        "airport_code": "MHD",
-        "geometry": {
-            "lat": 36.2340908,
-            "lng": 59.6418668
-        }
+        "geometry": [
+            36.2340908,
+            59.6418668
+        ]
     },
-    {
+    "THR": {
         "aeroway_name": "Mehrabad International Airport",
-        "airport_code": "THR",
-        "geometry": {
-            "lat": 35.6900662,
-            "lng": 51.3022286
-        }
+        "geometry": [
+            35.6900662,
+            51.3022286
+        ]
     },
-    {
+    "IKA": {
         "aeroway_name": "Imam Khomeini International Airport",
-        "airport_code": "IKA",
-        "geometry": {
-            "lat": 35.4164909,
-            "lng": 51.1447609
-        }
+        "geometry": [
+            35.4164909,
+            51.1447609
+        ]
     },
-    {
+    "IFN": {
         "aeroway_name": "Isfahan International Airport",
-        "airport_code": "IFN",
-        "geometry": {
-            "lat": 32.7614539,
-            "lng": 51.8888508
-        }
+        "geometry": [
+            32.7614539,
+            51.8888508
+        ]
     },
-    {
+    "KIH": {
         "aeroway_name": "Kish International Airport",
-        "airport_code": "KIH",
-        "geometry": {
-            "lat": 26.5299696,
-            "lng": 53.975013
-        }
+        "geometry": [
+            26.5299696,
+            53.975013
+        ]
     },
-    {
+    "AWZ": {
         "aeroway_name": "General Soleimani International Airport",
-        "airport_code": "AWZ",
-        "geometry": {
-            "lat": 31.3375148,
-            "lng": 48.7618376
-        }
+        "geometry": [
+            31.3375148,
+            48.7618376
+        ]
     },
-    {
+    "SYZ": {
         "aeroway_name": "Shahid Dastgheib International Airport of Shiraz",
-        "airport_code": "SYZ",
-        "geometry": {
-            "lat": 29.5413935,
-            "lng": 52.5811635
-        }
+        "geometry": [
+            29.5413935,
+            52.5811635
+        ]
     },
-    {
+    "ABD": {
         "aeroway_name": "Abadan international Airport",
-        "airport_code": "ABD",
-        "geometry": {
-            "lat": 30.3668469,
-            "lng": 48.2284395
-        }
+        "geometry": [
+            30.3668469,
+            48.2284395
+        ]
     },
-    {
+    "ACP": {
         "aeroway_name": "Airport Sahand",
-        "airport_code": "ACP",
-        "geometry": {
-            "lat": 37.3477904,
-            "lng": 46.1241049
-        }
+        "geometry": [
+            37.3477904,
+            46.1241049
+        ]
     },
-    {
+    "ADB": {
         "aeroway_name": "Adnan Menderes Airport",
-        "airport_code": "ADB",
-        "geometry": {
-            "lat": 38.2895932,
-            "lng": 27.1588197
-        }
+        "geometry": [
+            38.2895932,
+            27.1588197
+        ]
     },
-    {
+    "ADU": {
         "aeroway_name": "Ardabil Airport",
-        "airport_code": "ADU",
-        "geometry": {
-            "lat": 38.323679,
-            "lng": 48.4172786
-        }
+        "geometry": [
+            38.323679,
+            48.4172786
+        ]
     },
-    {
+    "AKW": {
         "aeroway_name": "Aghajari NIOC Airport",
-        "airport_code": "AKW",
-        "geometry": {
-            "lat": 30.7438644,
-            "lng": 49.6794396
-        }
+        "geometry": [
+            30.7438644,
+            49.6794396
+        ]
     },
-    {
+    "ALA": {
         "aeroway_name": "Almaty International Airport",
-        "airport_code": "ALA",
-        "geometry": {
-            "lat": 43.3556863,
-            "lng": 77.0425838
-        }
+        "geometry": [
+            43.3556863,
+            77.0425838
+        ]
     },
-    {
+    "AYT": {
         "aeroway_name": "Antalya Airport",
-        "airport_code": "AYT",
-        "geometry": {
-            "lat": 36.8999424,
-            "lng": 30.7981914
-        }
+        "geometry": [
+            36.8999424,
+            30.7981914
+        ]
     },
-    {
+    "AZD": {
         "aeroway_name": "Yazd Shahid Sadooghi International Airport",
-        "airport_code": "AZD",
-        "geometry": {
-            "lat": 31.9013104,
-            "lng": 54.2822101
-        }
+        "geometry": [
+            31.9013104,
+            54.2822101
+        ]
     },
-    {
+    "BEY": {
         "aeroway_name": "Beirut\u2013Rafic Hariri International Airport",
-        "airport_code": "BEY",
-        "geometry": {
-            "lat": 33.8184914,
-            "lng": 35.4909121
-        }
+        "geometry": [
+            33.8184914,
+            35.4909121
+        ]
     },
-    {
+    "BGW": {
         "aeroway_name": "Baghdad International Airport",
-        "airport_code": "BGW",
-        "geometry": {
-            "lat": 33.2636461,
-            "lng": 44.2236202
-        }
+        "geometry": [
+            33.2636461,
+            44.2236202
+        ]
     },
-    {
+    "BJV": {
         "aeroway_name": "Milas\u2013Bodrum Airport",
-        "airport_code": "BJV",
-        "geometry": {
-            "lat": 37.2495253,
-            "lng": 27.6721281
-        }
+        "geometry": [
+            37.2495253,
+            27.6721281
+        ]
     },
-    {
+    "BND": {
         "aeroway_name": "Bandar Abbas International Airport",
-        "airport_code": "BND",
-        "geometry": {
-            "lat": 27.2220364,
-            "lng": 56.3785686
-        }
+        "geometry": [
+            27.2220364,
+            56.3785686
+        ]
     },
-    {
+    "BUS": {
         "aeroway_name": "Batumi International Airport",
-        "airport_code": "BUS",
-        "geometry": {
-            "lat": 41.6093905,
-            "lng": 41.6006137
-        }
+        "geometry": [
+            41.6093905,
+            41.6006137
+        ]
     },
-    {
+    "BUZ": {
         "aeroway_name": "Bushehr Airport",
-        "airport_code": "BUZ",
-        "geometry": {
-            "lat": 28.9572989,
-            "lng": 50.8229405
-        }
+        "geometry": [
+            28.9572989,
+            50.8229405
+        ]
     },
-    {
+    "CAN": {
         "aeroway_name": "Guangzhou Baiyun International Airport",
-        "airport_code": "CAN",
-        "geometry": {
-            "lat": 23.3920026,
-            "lng": 113.3011824
-        }
+        "geometry": [
+            23.3920026,
+            113.3011824
+        ]
     },
-    {
+    "CDG": {
         "aeroway_name": "Charles de Gaulle International Airport",
-        "airport_code": "CDG",
-        "geometry": {
-            "lat": 49.0068908,
-            "lng": 2.571082
-        }
+        "geometry": [
+            49.0068908,
+            2.571082
+        ]
     },
-    {
+    "DAM": {
         "aeroway_name": "Damascus International Airport",
-        "airport_code": "DAM",
-        "geometry": {
-            "lat": 33.4101971,
-            "lng": 36.5240588
-        }
+        "geometry": [
+            33.4101971,
+            36.5240588
+        ]
     },
-    {
+    "DEF": {
         "aeroway_name": "Dezful Airport",
-        "airport_code": "DEF",
-        "geometry": {
-            "lat": 32.4401058,
-            "lng": 48.385778
-        }
+        "geometry": [
+            32.4401058,
+            48.385778
+        ]
     },
-    {
+    "DNZ": {
         "aeroway_name": "Denizli \u00c7ardak Airport",
-        "airport_code": "DNZ",
-        "geometry": {
-            "lat": 37.7860347,
-            "lng": 29.6973403
-        }
+        "geometry": [
+            37.7860347,
+            29.6973403
+        ]
     },
-    {
+    "DXB": {
         "aeroway_name": "Dubai International Airport",
-        "airport_code": "DXB",
-        "geometry": {
-            "lat": 25.2521287,
-            "lng": 55.3657156
-        }
+        "geometry": [
+            25.2521287,
+            55.3657156
+        ]
     },
-    {
+    "ECN": {
         "aeroway_name": "Ercan International Airport",
-        "airport_code": "ECN",
-        "geometry": {
-            "lat": 35.1520587,
-            "lng": 33.503636
-        }
+        "geometry": [
+            35.1520587,
+            33.503636
+        ]
     },
-    {
+    "ESB": {
         "aeroway_name": "Esenbo\u011fa International Airport",
-        "airport_code": "ESB",
-        "geometry": {
-            "lat": 40.1230634,
-            "lng": 32.9987209
-        }
+        "geometry": [
+            40.1230634,
+            32.9987209
+        ]
     },
-    {
+    "EVN": {
         "aeroway_name": "Zvartnots International Airport",
-        "airport_code": "EVN",
-        "geometry": {
-            "lat": 40.1493974,
-            "lng": 44.4018985
-        }
+        "geometry": [
+            40.1493974,
+            44.4018985
+        ]
     },
-    {
+    "FCO": {
         "aeroway_name": "Roma-Fiumicino Airport",
-        "airport_code": "FCO",
-        "geometry": {
-            "lat": 41.8153413,
-            "lng": 12.2265051
-        }
+        "geometry": [
+            41.8153413,
+            12.2265051
+        ]
     },
-    {
+    "FRA": {
         "aeroway_name": "Frankfurt Airport",
-        "airport_code": "FRA",
-        "geometry": {
-            "lat": 50.0229432,
-            "lng": 8.5249373
-        }
+        "geometry": [
+            50.0229432,
+            8.5249373
+        ]
     },
-    {
+    "GBT": {
         "aeroway_name": "Gorgan International Airport",
-        "airport_code": "GBT",
-        "geometry": {
-            "lat": 36.9121665,
-            "lng": 54.3981105
-        }
+        "geometry": [
+            36.9121665,
+            54.3981105
+        ]
     },
-    {
+    "GSM": {
         "aeroway_name": "Qeshm International Airport",
-        "airport_code": "GSM",
-        "geometry": {
-            "lat": 26.753172,
-            "lng": 55.8991771
-        }
+        "geometry": [
+            26.753172,
+            55.8991771
+        ]
     },
-    {
+    "GYD": {
         "aeroway_name": "Heydar Aliyev International Airport",
-        "airport_code": "GYD",
-        "geometry": {
-            "lat": 40.4728104,
-            "lng": 50.0490975
-        }
+        "geometry": [
+            40.4728104,
+            50.0490975
+        ]
     },
-    {
+    "GZP": {
         "aeroway_name": "Gazipa\u015fa-Alanya Airport",
-        "airport_code": "GZP",
-        "geometry": {
-            "lat": 36.2988059,
-            "lng": 32.2971821
-        }
+        "geometry": [
+            36.2988059,
+            32.2971821
+        ]
     },
-    {
+    "ISE": {
         "aeroway_name": "Isparta S\u00fcleyman Demirel Airport",
-        "airport_code": "ISE",
-        "geometry": {
-            "lat": 37.856023,
-            "lng": 30.367304
-        }
+        "geometry": [
+            37.856023,
+            30.367304
+        ]
     },
-    {
+    "IST": {
         "aeroway_name": "Istanbul Airport",
-        "airport_code": "IST",
-        "geometry": {
-            "lat": 41.2753227,
-            "lng": 28.7322692
-        }
+        "geometry": [
+            41.2753227,
+            28.7322692
+        ]
     },
-    {
+    "ISU": {
         "aeroway_name": "Sulaimaniyah International Airport",
-        "airport_code": "ISU",
-        "geometry": {
-            "lat": 35.5614111,
-            "lng": 45.3170114
-        }
+        "geometry": [
+            35.5614111,
+            45.3170114
+        ]
     },
-    {
+    "JAR": {
         "aeroway_name": "Jahrom Airport",
-        "airport_code": "JAR",
-        "geometry": {
-            "lat": 28.5865449,
-            "lng": 53.5799617
-        }
+        "geometry": [
+            28.5865449,
+            53.5799617
+        ]
     },
-    {
+    "KER": {
         "aeroway_name": "Kerman Ayatollah Hashemi Rafsanjani International Airport",
-        "airport_code": "KER",
-        "geometry": {
-            "lat": 30.2818031,
-            "lng": 56.9498517
-        }
+        "geometry": [
+            30.2818031,
+            56.9498517
+        ]
     },
-    {
+    "KHD": {
         "aeroway_name": "Khorramabad Airport",
-        "airport_code": "KHD",
-        "geometry": {
-            "lat": 33.4358783,
-            "lng": 48.2838591
-        }
+        "geometry": [
+            33.4358783,
+            48.2838591
+        ]
     },
-    {
+    "KSH": {
         "aeroway_name": "Shahid Ashrafi Esfahani Airport",
-        "airport_code": "KSH",
-        "geometry": {
-            "lat": 34.3475567,
-            "lng": 47.1689136
-        }
+        "geometry": [
+            34.3475567,
+            47.1689136
+        ]
     },
-    {
+    "KWI": {
         "aeroway_name": "Kuwait International Airport",
-        "airport_code": "KWI",
-        "geometry": {
-            "lat": 29.2202681,
-            "lng": 47.9551556
-        }
+        "geometry": [
+            29.2202681,
+            47.9551556
+        ]
     },
-    {
+    "LED": {
         "aeroway_name": "Pulkovo Airport",
-        "airport_code": "LED",
-        "geometry": {
-            "lat": 59.8016986,
-            "lng": 30.2676011
-        }
+        "geometry": [
+            59.8016986,
+            30.2676011
+        ]
     },
-    {
+    "LRR": {
         "aeroway_name": "Larestan International Airport",
-        "airport_code": "LRR",
-        "geometry": {
-            "lat": 27.6729706,
-            "lng": 54.3860475
-        }
+        "geometry": [
+            27.6729706,
+            54.3860475
+        ]
     },
-    {
+    "MCT": {
         "aeroway_name": "Muscat International Airport",
-        "airport_code": "MCT",
-        "geometry": {
-            "lat": 23.5994728,
-            "lng": 58.2738006
-        }
+        "geometry": [
+            23.5994728,
+            58.2738006
+        ]
     },
-    {
+    "NJF": {
         "aeroway_name": "Al Najaf International Airport",
-        "airport_code": "NJF",
-        "geometry": {
-            "lat": 31.9892564,
-            "lng": 44.4037338
-        }
+        "geometry": [
+            31.9892564,
+            44.4037338
+        ]
     },
-    {
+    "NSH": {
         "aeroway_name": "Noshahr Airport",
-        "airport_code": "NSH",
-        "geometry": {
-            "lat": 36.6633603,
-            "lng": 51.4652109
-        }
+        "geometry": [
+            36.6633603,
+            51.4652109
+        ]
     },
-    {
+    "OMH": {
         "aeroway_name": "Urmia International Airport",
-        "airport_code": "OMH",
-        "geometry": {
-            "lat": 37.6716605,
-            "lng": 45.0711952
-        }
+        "geometry": [
+            37.6716605,
+            45.0711952
+        ]
     },
-    {
+    "PGU": {
         "aeroway_name": "Persian Gulf International Airport",
-        "airport_code": "PGU",
-        "geometry": {
-            "lat": 27.3787641,
-            "lng": 52.7397368
-        }
+        "geometry": [
+            27.3787641,
+            52.7397368
+        ]
     },
-    {
+    "RAS": {
         "aeroway_name": "Rasht Airport",
-        "airport_code": "RAS",
-        "geometry": {
-            "lat": 37.3240208,
-            "lng": 49.6103959
-        }
+        "geometry": [
+            37.3240208,
+            49.6103959
+        ]
     },
-    {
+    "SAW": {
         "aeroway_name": "Sabiha G\u00f6k\u00e7en Havaliman\u0131",
-        "airport_code": "SAW",
-        "geometry": {
-            "lat": 40.8929501,
-            "lng": 29.293503
-        }
+        "geometry": [
+            40.8929501,
+            29.293503
+        ]
     },
-    {
+    "SHJ": {
         "aeroway_name": "SHJ Departures Terminal",
-        "airport_code": "SHJ",
-        "geometry": {
-            "lat": 25.32115,
-            "lng": 55.5204016
-        }
+        "geometry": [
+            25.32115,
+            55.5204016
+        ]
     },
-    {
+    "SRY": {
         "aeroway_name": "Sari Dasht-e-Naz International Airport",
-        "airport_code": "SRY",
-        "geometry": {
-            "lat": 36.6464062,
-            "lng": 53.1879177
-        }
+        "geometry": [
+            36.6464062,
+            53.1879177
+        ]
     },
-    {
+    "SVO": {
         "aeroway_name": "Sheremetyevo International Airport",
-        "airport_code": "SVO",
-        "geometry": {
-            "lat": 55.9760876,
-            "lng": 37.4238008
-        }
+        "geometry": [
+            55.9760876,
+            37.4238008
+        ]
     },
-    {
+    "TBS": {
         "aeroway_name": "Shota Rustaveli Tbilisi International Airport",
-        "airport_code": "TBS",
-        "geometry": {
-            "lat": 41.6700546,
-            "lng": 44.9544802
-        }
+        "geometry": [
+            41.6700546,
+            44.9544802
+        ]
     },
-    {
+    "TBZ": {
         "aeroway_name": "Tabriz International Airport",
-        "airport_code": "TBZ",
-        "geometry": {
-            "lat": 38.1355697,
-            "lng": 46.2460114
-        }
+        "geometry": [
+            38.1355697,
+            46.2460114
+        ]
     },
-    {
+    "VIE": {
         "aeroway_name": "Vienna International Airport",
-        "airport_code": "VIE",
-        "geometry": {
-            "lat": 48.1049967,
-            "lng": 16.5848987
-        }
+        "geometry": [
+            48.1049967,
+            16.5848987
+        ]
     },
-    {
+    "VKO": {
         "aeroway_name": "Vnukovo International Airport",
-        "airport_code": "VKO",
-        "geometry": {
-            "lat": 55.5995278,
-            "lng": 37.2735752
-        }
+        "geometry": [
+            55.5995278,
+            37.2735752
+        ]
     },
-    {
+    "XBJ": {
         "aeroway_name": "Birjand Shahid Kaveh International Airport",
-        "airport_code": "XBJ",
-        "geometry": {
-            "lat": 32.8997377,
-            "lng": 59.2641002
-        }
+        "geometry": [
+            32.8997377,
+            59.2641002
+        ]
     },
-    {
+    "YES": {
         "aeroway_name": "Yasuj Airport",
-        "airport_code": "YES",
-        "geometry": {
-            "lat": 30.7027177,
-            "lng": 51.5478009
-        }
+        "geometry": [
+            30.7027177,
+            51.5478009
+        ]
     },
-    {
+    "ZAH": {
         "aeroway_name": "Flughafen Zahedan",
-        "airport_code": "ZAH",
-        "geometry": {
-            "lat": 29.475746,
-            "lng": 60.9005087
-        }
+        "geometry": [
+            29.475746,
+            60.9005087
+        ]
     },
-    {
+    "ZBR": {
         "aeroway_name": "Konarak Airport",
-        "airport_code": "ZBR",
-        "geometry": {
-            "lat": 25.4439418,
-            "lng": 60.3836187
-        }
+        "geometry": [
+            25.4439418,
+            60.3836187
+        ]
     },
-    {
-        "Total Length": 64
-    }
-]
+    "Total Length": 64
+}
