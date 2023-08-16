@@ -41,10 +41,17 @@ def get_airport_geographic_coordinate(geo_coder, **kwargs):
             _type == "aeroway"):
 
             aeroway_name = components_dict.get("aeroway", airport_name)
+            geometry_tpl = (result_dict["geometry"]["lat"], 
+                            result_dict["geometry"]["lng"])
 
-            return {"aeroway_name": aeroway_name,
-                    "airport_code": airport_code,
-                    "geometry": result_dict["geometry"]}
+            result_tpl = (
+                airport_code, {
+                    "aeroway_name": aeroway_name,
+                    "geometry": geometry_tpl
+                }
+            )
+
+            return result_tpl
         
     max_recursive_depth += 1
     
@@ -57,7 +64,7 @@ def get_airport_geographic_coordinate(geo_coder, **kwargs):
 
 
 if __name__ == "__main__":
-    airports_geometry_lst = list()
+    airports_geometry_dict = dict()
     airports_info_dict = get_json_obj(SOURCES["airports_info_json_file_path"])
     geo_coder = OpenCageGeocode(OPENCAGEDATA_API_KEY)
 
@@ -67,11 +74,13 @@ if __name__ == "__main__":
                   "country_code": airport_val["country_code"],
                   "airport_name": airport_val["airport_names"][-1]}
 
-        airport_geometry_dict = get_airport_geographic_coordinate(geo_coder, **params)
+        airport_geometry_tpl = get_airport_geographic_coordinate(geo_coder, **params)
 
-        if airport_geometry_dict:
-            airports_geometry_lst.append(airport_geometry_dict)
+        if airport_geometry_tpl:
+            key, value = airport_geometry_tpl
+            airports_geometry_dict[key] = value
     
+    airports_geometry_dict["Total Length"] = len(airports_geometry_dict)
+
     with open(SOURCES["airports_geometry_json_file_path"], 'w') as fp:
-        airports_geometry_lst.append({"Total Length": len(airports_geometry_lst)})
-        json.dump(airports_geometry_lst, fp, indent=4)
+        json.dump(airports_geometry_dict, fp, indent=4)
