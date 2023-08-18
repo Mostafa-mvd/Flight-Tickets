@@ -10,7 +10,10 @@ from preprocessing import (change_city_names_to_en, difference_drop,
                            update_departure_date_YMD_format_fields,
                            update_dependent_col, semi_space_correction,
                            move_columns, replace_with, 
-                           change_company_name_specific_value)
+                           change_company_name_specific_value,
+                           change_flight_class_type_specific_value,
+                           update_flight_number_col,
+                           filter_rows_by_values)
 
 from common_utils.utils import (get_json_obj, create_flatten_dict,
                                 extract_values_from_json_obj)
@@ -22,6 +25,7 @@ MONTH_DICT = get_json_obj(SOURCES["months_json_file_path"])
 AIRPORT_CODES_DICT = get_json_obj(SOURCES["airport_codes_json_file_path"])
 AIRPORTS_INFO_DICT = get_json_obj(SOURCES["airports_info_json_file_path"])
 AIRPORTS_GEOMETRY_DICT = get_json_obj(SOURCES["airports_geometry_json_file_path"])
+AIRLINE_CODES_DICT = get_json_obj(SOURCES["airlines_code_json_path"])
 
 CITY_AIRPORT_CODES_LST = extract_values_from_json_obj(AIRPORT_CODES_DICT, "id")
 CITY_AIRPORT_NAMES_FA_LST = extract_values_from_json_obj(AIRPORT_CODES_DICT, "city")
@@ -104,8 +108,28 @@ df["flight_length_min"] = df2.apply(func=estimate_flight_length, axis=1)
 # Estimating arrival_time col
 df["local_arrival_time"] = df.apply(func=estimate_arrival_time, axis=1)
 
-# Changing company values
+# Changing specific values
 df["company_name"] = df["company_name"].apply(func=change_company_name_specific_value)
+df["flight_class_type"] = df["flight_class_type"].apply(func=change_flight_class_type_specific_value)
+
+# Replacing space values
+df["departure_city"] = df["departure_city"].replace(' ', '_', regex=True)
+df["departure_airport"] = df["departure_airport"].replace(' ', '_', regex=True)
+df["arrival_city"] = df["arrival_city"].replace(' ', '_', regex=True)
+df["arrival_airport"] = df["arrival_airport"].replace(' ', '_', regex=True)
+df["company_name"] = df["company_name"].replace(' ', '', regex=True)
+df["flight_class_type"] = df["flight_class_type"].replace(' ', '', regex=True)
+
+
+# Deleting 422 rows due to the absence of the mentioned company, its IATA, ICAO or call sign with specific ticket price in the collected data.
+filter_rows_by_values(df, "company_name", ['J1', 'SR', 'RI', 'Flypersia', 'Asajet', 'Pouya', 'Pars'])
+
+# Updating flight_number col
+df2 = difference_drop(df, "flight_number", "company_name")
+
+df["flight_number"] = df2.apply(func=update_flight_number_col,
+                                args=(AIRLINE_CODES_DICT,),
+                                axis=1)
 
 # Move position of columns.
 df = move_columns(
