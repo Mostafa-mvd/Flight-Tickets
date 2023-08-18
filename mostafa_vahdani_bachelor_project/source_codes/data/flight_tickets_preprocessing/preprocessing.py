@@ -54,6 +54,13 @@ def update_dependent_col(main_df, func, x_col_name, y_col_name, your_dict):
     return main_df
 
 
+def update_flight_number_col(x, airline_codes_dict):
+    company_name = x["company_name"]
+    flight_number = x["flight_number"]
+    airline_code = airline_codes_dict[company_name]
+    return f"{airline_code}-{flight_number}"
+
+
 def change_city_names_to_en(x_field, airports_info_dict):
     return extract_value_from_json_obj(airports_info_dict, [x_field, "city_name"])
 
@@ -142,16 +149,43 @@ def estimate_arrival_time(row):
 
 def change_company_name_specific_value(series_value):
     if 1 <= len(series_value) <= 3:
-        return series_value.upper()
-    elif series_value == "فری برد":
+        series_value = series_value.upper()
+    elif len(series_value) > 3:
+        series_value = series_value.capitalize()
+    
+    if series_value == "فری برد":
         return "Freebird"
     elif series_value == "ماوی گوک":
-        return "Mavi Gok"
-    elif len(series_value) > 3:
-        return series_value.capitalize()
+        return "MaviGok"
+    elif series_value == "G6":
+        return "GlobalX"
+    elif series_value == "CPN":
+        return "Caspian"
+    elif series_value == "IZG":
+        return "Zagros"
+    elif series_value == "3F":
+        return "FlyOne"
+    elif series_value == "VRH":
+        return "Varesh"
+    
     return series_value
+
+
+def change_flight_class_type_specific_value(x):
+    if "ایرباس" in x:
+        return x.replace("ایرباس", "Airbus")
+    elif "بوئینگ" in x:
+        return x.replace("بوئینگ", "Boeing")
+    elif "بویینگ" in x:
+        return x.replace("بویینگ", "Boeing")
+    return x
 
 
 def check_col_distribution(col_df):
     col_df.hist()
     plt.show()
+
+
+def filter_rows_by_values(df, col, values):
+    df.drop(df[df[col].isin(values)].index, inplace=True)
+
