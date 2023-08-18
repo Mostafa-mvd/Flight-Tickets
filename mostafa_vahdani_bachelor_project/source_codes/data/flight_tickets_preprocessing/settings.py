@@ -18,6 +18,7 @@ SOURCES = {
     "airports_info_json_file_path": PROJECT_BASE_PATH.joinpath("static", "airports_info.json"),
     "airports_geometry_json_file_path": PROJECT_BASE_PATH.joinpath("static", "airports_geometry.json"),
     "months_json_file_path": PROJECT_BASE_PATH.joinpath("static", "months.json"),
+    "airlines_code_json_path": PROJECT_BASE_PATH.joinpath("static", "airlines_code.json"),
 }
 
 COLUMNS_NEED_TO_MOVE = {
