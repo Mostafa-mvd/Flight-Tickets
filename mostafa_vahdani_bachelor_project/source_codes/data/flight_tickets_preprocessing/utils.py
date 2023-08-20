@@ -1,5 +1,4 @@
-import pandas as pd
-from settings import SOURCES
+from matplotlib import pyplot as plt
 
 
 def difference_drop(df, *args):
@@ -28,26 +27,47 @@ def check_space_existence(df, cols_name):
         print(f"{col_name}: {result}")
 
 
-raw_dataset_file_path = SOURCES["dataset_file_path_from"]
-processed_dataset_file_path_ = SOURCES["dataset_file_path_to"]
-
-df = pd.read_csv(processed_dataset_file_path_)
-cols_name = df.columns
+def get_masked_df(df, col_name, specific_value):
+    mask = (df[col_name] == specific_value)
+    return mask, df[mask]
 
 
-# print(count_unique_values(df, "company_name"))
-# print("---")
-# check_existence_of_null_values(df, ["flight_number"])
-# print("---")
-print(values_count(df, "company_name"))
-# print("---")
-# print(df.duplicated().sum())
-# print("---")
-# check_space_existence(df, ["flight_number"])
-# print("---")
+def apply_to_df_by_mask(main_df, mask, masked_df, col_name, your_func):
+    main_df.loc[mask, col_name] = masked_df[col_name].apply(func=your_func)
 
 
-# df_no_duplicates = df.drop_duplicates()
-# print(df_no_duplicates.duplicated().sum())
+def group_by_count(df, *args):
+    """last column name on the args is the column you want to apply count() on it"""
+    return df.groupby([*args])[args[-1]].count()
 
-# duplicate_rows = df[df.duplicated()]
+
+def count_duplicated(df):
+    return df.duplicated().sum()
+
+
+def check_col_distribution(col_df):
+    col_df.hist()
+    plt.show()
+
+
+def filter_rows_by_values(df, col, values):
+    df.drop(df[df[col].isin(values)].index, inplace=True)
+
+
+if __name__ == '__main__':
+    import pandas as pd
+    from settings import SOURCES
+
+    raw_dataset_file_path = SOURCES["dataset_file_path_from"]
+    processed_dataset_file_path = SOURCES["dataset_file_path_to"]
+
+    df = pd.read_csv(processed_dataset_file_path)
+    col_names = df.columns
+
+
+    #‌ print(count_unique_values(df, "flight_class_type"))
+    # df2 = values_count(df, "flight_class_type")
+    print(check_existence_of_null_values(df, col_names))
+
+    # df2.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/source_codes/data/scratch/f.csv")
+
