@@ -3,20 +3,24 @@ import pandas as pd
 
 from hazm import Normalizer
 
-from preprocessing import (change_city_names_to_en, difference_drop,
-                           estimate_flight_length, estimate_arrival_time,
-                           orthodromic_distance, get_city_airport_names,
-                           update_city_persian_name_fields,
-                           update_departure_date_YMD_format_fields,
-                           update_dependent_col, semi_space_correction,
-                           move_columns, replace_with, 
-                           change_company_name_specific_value,
-                           change_flight_class_type_specific_value,
-                           update_flight_number_col,
-                           filter_rows_by_values)
+from tickets_preprocessing import (change_city_names_to_en, difference_drop,
+                                   estimate_flight_length, estimate_arrival_time,
+                                   orthodromic_distance, get_city_airport_names,
+                                   update_city_persian_name_fields,
+                                   update_departure_date_YMD_format_fields,
+                                   update_dependent_col, semi_space_correction,
+                                   move_columns, replace_with, 
+                                   change_company_name_specific_value,
+                                   change_flight_class_type_specific_value,
+                                   update_flight_number_col, extract_fare_class_code,
+                                   update_flight_sale_type)
 
 from common_utils.utils import (get_json_obj, create_flatten_dict,
                                 extract_values_from_json_obj)
+
+from utils import (filter_rows_by_values,
+                   advance_mode,
+                   fill_with_random)
 
 from settings import (SOURCES, COLUMNS_NEED_TO_MOVE)
 
@@ -122,6 +126,7 @@ df["flight_class_type"] = df["flight_class_type"].replace(' ', '', regex=True)
 
 
 # Deleting 422 rows due to the absence of the mentioned company, its IATA, ICAO or call sign with specific ticket price in the collected data.
+# (422 * 100) / 13972 = 3% -> It is just 3 percent of our main data so simply I removed it.
 filter_rows_by_values(df, "company_name", ['J1', 'SR', 'RI', 'Flypersia', 'Asajet', 'Pouya', 'Pars'])
 
 # Updating flight_number col
@@ -130,6 +135,33 @@ df2 = difference_drop(df, "flight_number", "company_name")
 df["flight_number"] = df2.apply(func=update_flight_number_col,
                                 args=(AIRLINE_CODES_DICT,),
                                 axis=1)
+
+# Extracting fare class code
+df['fare_class_code'] = df["flight_class_type"].apply(func=extract_fare_class_code)
+df = df.drop(["flight_class_type"], axis=1)
+
+# Fill fare_class_code col with the most frequent value of fare class in each company group.
+result = df.groupby('company_name')['fare_class_code'].apply(lambda group: group.fillna(group.mode().iloc[0]))
+df['fare_class_code'] = result.droplevel(0)
+
+# Changed to english
+df['flight_sale_type'] = df["flight_sale_type"].apply(func=update_flight_sale_type)
+
+# Fill flight_sale_type col with the most frequent value of sale type in each (company & fare_class_code) group.
+
+# Be careful index of result in this situation is MultiIndex. (Hierarchical index)
+# Our flight_sale_type in dataframe is Indexed not MultiIndexed. (Index -> one-dimensional labeled arrays)
+# You can think of MultiIndex as an array of tuples where each tuple is unique.
+result = df.groupby(["company_name", "fare_class_code"])['flight_sale_type'].apply(advance_mode)
+# Convert MultiIndexed result to Indexed result then set label name for index with existence of current column.
+indexed_result = result.reset_index().set_index('level_2')
+# Drop the columns we don't want.
+dropped_result = indexed_result.drop(["company_name", "fare_class_code"], axis=1)
+# Now dropped_result and our df are in the same index size.
+df['flight_sale_type'] = dropped_result["flight_sale_type"]
+
+# Random Imputation of flight_sale_type
+df = fill_with_random(df, "flight_sale_type")
 
 # Move position of columns.
 df = move_columns(
