@@ -32,13 +32,13 @@ COLUMNS_NEED_TO_MOVE = {
     "local_departure_time": 9,
     "local_arrival_time": 10,
     "flight_number": 12,
-    "ticket_price_T": 13,
+    "ticket_price_T": 16,
     "company_name": 11,
     "orthodromic_distance_KM": 6,
     "flight_length_min": 7,
-    "flight_sale_type": 14,
-    "flight_class_type": 15,
-    "flight_capacity": 16
+    "flight_sale_type": 13,
+    "fare_class_code": 14,
+    "flight_capacity": 15
 }
 
 OPENCAGEDATA_API_KEY = os.getenv("OPENCAGEDATA_API_KEY")
