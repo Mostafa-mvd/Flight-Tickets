@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 from matplotlib import pyplot as plt
 
 
@@ -18,6 +21,10 @@ def values_count(df, col_name):
 
 def count_unique_values(df, col_name):
     return f"Length: {df[col_name].nunique()}"
+
+
+def count_null_values(df, col_name):
+    return df[col_name].isnull().sum()
 
 
 def check_space_existence(df, cols_name):
@@ -54,20 +61,19 @@ def filter_rows_by_values(df, col, values):
     df.drop(df[df[col].isin(values)].index, inplace=True)
 
 
-if __name__ == '__main__':
-    import pandas as pd
-    from settings import SOURCES
-
-    raw_dataset_file_path = SOURCES["dataset_file_path_from"]
-    processed_dataset_file_path = SOURCES["dataset_file_path_to"]
-
-    df = pd.read_csv(processed_dataset_file_path)
-    col_names = df.columns
+def count_specific_value_in_col(df, col_name, sp_value):
+    return (df[col_name] == sp_value).sum()
 
 
-    #‌ print(count_unique_values(df, "flight_class_type"))
-    # df2 = values_count(df, "flight_class_type")
-    print(check_existence_of_null_values(df, col_names))
+def advance_mode(group):
+    mode = group.mode()
+    if not mode.empty:
+        return group.fillna(group.mode().iloc[0])
+    return group
 
-    # df2.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/source_codes/data/scratch/f.csv")
 
+def fill_with_random(df, column):
+    df2 = df.copy()
+    df2[column] = df2[column].apply(lambda x: np.random.choice(
+        df2[column].dropna().values) if pd.isnull(x) else x)
+    return df2
