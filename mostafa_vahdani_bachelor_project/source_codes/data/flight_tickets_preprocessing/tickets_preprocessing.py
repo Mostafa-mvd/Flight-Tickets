@@ -9,6 +9,11 @@ from jdatetime import datetime, timedelta
 from random import randint
 
 
+# TODO: we can add stops number of flight for connecting or direct flight.
+
+# TODO: I have to added layover time for direct and connecting flight in estimate_flight_length().
+
+
 def correct_field(main_col_field, secondary_col_field):
     if main_col_field != secondary_col_field:
         return secondary_col_field
@@ -112,8 +117,6 @@ def estimate_flight_length(distance):
     busy_airplane_time = 10
     descent_time = randint(10, 15)
     landing_time = randint(10, 20)
-    
-    # TODO: I have to added layover time for direct and connecting flight
 
     flight_length = descent_time + landing_time + takeoff_time + \
                     taxi_time + attach_stairs_time + takeoff_clearance + \
@@ -194,7 +197,7 @@ def extract_fare_class_code(x):
         return "Y"
     elif 'TOR' in x:
         # 'M83TOR', 'MD8TOR', etc
-        return 'TOR'
+        return None
     elif x.find("_") != -1:
         # 'BAE-87Y_D', 'AB346-MMRC_D', etc
         return x.split("_")[0][-1]
@@ -207,3 +210,11 @@ def extract_fare_class_code(x):
 
     # 'AirbusA310W', 'MD8L', '320C', 'DEFJ', 'DEFB', 'AB6W', 'A300B4-203V', 'Boeing737X', 'Boeing737Q', etc
     return x[-1]
+
+
+def update_flight_sale_type(x):
+    if pd.notnull(x):
+        if "سیستمی" in x:
+            return "Scheduled"
+        elif "چارتری" in x:
+            return "Charter"
