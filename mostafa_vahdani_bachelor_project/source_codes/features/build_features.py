@@ -37,7 +37,7 @@ df["day"] = df['departure_date_YMD_format'].map(lambda x: x.day)
 # ‌Converting the flight local_departure_time into proper time
 df['dep_flight_time'] = df['local_departure_time'].apply(flight_dep_time)
 
-# Convering the flight duration to seconds
+# Converting the flight duration to seconds
 df['duration_sec'] = df['flight_length_min'].apply(flight_duration_sec)
 
 # Removing the unused features
@@ -57,23 +57,9 @@ df.drop(["national_departure_code",
 df.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/data/interim/build_features_flight_tickets_dataset.csv", index=False)
 
 # Converting categorical column
-dummies = pd.get_dummies(df, 
-                         columns=['departure_city', 'arrival_city',
+df = pd.get_dummies(df, columns=['departure_city', 'arrival_city',
                                   'company_name', 'flight_sale_type',
                                   'fare_class_code', 'dep_flight_time'])
-
-# Concatenate the dummies to original dataframe
-df = pd.concat([df, dummies], axis='columns')
-
-# Removing the unused features
-df.drop(["departure_city",
-         "arrival_city",
-         "company_name", 
-         "flight_sale_type",
-         "fare_class_code", 
-         "dep_flight_time"],
-         inplace=True,
-         axis=1)
 
 # Saving
 df.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/data/interim/final_flight_tickets_dataset.csv", index=False)
