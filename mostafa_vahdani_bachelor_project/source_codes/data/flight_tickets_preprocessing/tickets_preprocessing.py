@@ -81,7 +81,7 @@ def replace_with(col_df, origin_value, replacement_value, type_value=None):
     col_df = col_df.replace(origin_value, replacement_value)
 
     if type_value:
-        col_df = col_df.astype(float)
+        col_df = col_df.astype(type_value)
     
     return col_df
 
@@ -186,7 +186,6 @@ def extract_fare_class_code(x):
 
     # Note -> The site we scrapped did not have a specific format to easily extract the fare class.
     # Format -> [AircraftModel][-][RegistrationCode]AirlineClassCode[_D]
-
     if len(x) in (1, 2):
         # Y, B, L, K, C, J, F, P, RY, RP, RB, etc
         return x
@@ -207,7 +206,6 @@ def extract_fare_class_code(x):
     elif x.count("Y") == 1:
         # A310Y33, BoeingMD-83Y, BoeingMD-Y, 'BoeingY', Boeing737Y, '320Y', 'AirbusY', 'Airbus320Y', 'AB6Y', '737Y', 'M80Y', 'DEFY', '100Y', 'B737-800Y', etc
         return x[x.index("Y"):]
-
     # 'AirbusA310W', 'MD8L', '320C', 'DEFJ', 'DEFB', 'AB6W', 'A300B4-203V', 'Boeing737X', 'Boeing737Q', etc
     return x[-1]
 
