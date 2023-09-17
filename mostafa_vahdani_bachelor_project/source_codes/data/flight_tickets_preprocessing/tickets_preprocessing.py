@@ -8,6 +8,8 @@ from utils import difference_drop
 from jdatetime import datetime, timedelta
 from random import randint
 
+from sklearn.impute import KNNImputer
+
 
 # TODO: we can add stops number of flight for connecting or direct flight.
 
@@ -216,3 +218,10 @@ def update_flight_sale_type(x):
             return "Scheduled"
         elif "چارتری" in x:
             return "Charter"
+
+
+def fillna_capacity(capacity_col):
+    knn_imputer = KNNImputer(n_neighbors=5)
+    capacity_filled = knn_imputer.fit_transform(capacity_col)
+    capacity_filled_df = pd.DataFrame(capacity_filled, columns=capacity_col.columns)
+    return capacity_filled_df

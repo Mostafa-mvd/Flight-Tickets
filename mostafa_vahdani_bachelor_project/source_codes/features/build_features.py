@@ -55,11 +55,3 @@ df.drop(["national_departure_code",
         axis=1)
 
 df.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/data/interim/build_features_flight_tickets_dataset.csv", index=False)
-
-# Converting categorical column
-df = pd.get_dummies(df, columns=['departure_city', 'arrival_city',
-                                  'company_name', 'flight_sale_type',
-                                  'fare_class_code', 'dep_flight_time'])
-
-# Saving
-df.to_csv("/home/magnus9102/Mostafa/Py/Github/data-science/mostafa_vahdani_bachelor_project/data/interim/final_flight_tickets_dataset.csv", index=False)

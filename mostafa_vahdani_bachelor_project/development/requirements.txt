@@ -19,3 +19,4 @@ requests==2.31.0
 pytz==2023.3
 jdatetime==4.1.1
 haversine==2.8.0
+category_encoders==2.6.2

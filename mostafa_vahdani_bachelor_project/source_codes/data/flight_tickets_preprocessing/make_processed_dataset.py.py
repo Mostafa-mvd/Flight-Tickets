@@ -11,7 +11,8 @@ from tickets_preprocessing import (change_city_names_to_en, difference_drop,
                                    move_columns, update_flight_sale_type, 
                                    change_company_name_specific_value,
                                    change_flight_class_type_specific_value,
-                                   update_flight_number_col, extract_fare_class_code)
+                                   update_flight_number_col, extract_fare_class_code,
+                                   fillna_capacity)
 
 from common_utils.utils import (get_json_obj, create_flatten_dict,
                                 extract_values_from_json_obj)
@@ -39,7 +40,6 @@ df = pd.read_csv(SOURCES["dataset_file_path_from"])
 
 # The prediction of the cheapest price of the plane ticket in a certain period of time is not a function of capacity and id.
 df = df.drop(["ticket_id"], axis=1)
-df = df.drop(["flight_capacity"], axis=1)
 
 # Drop exact same rows.
 df = df.drop_duplicates()
@@ -161,6 +161,13 @@ df['flight_sale_type'] = dropped_result["flight_sale_type"]
 
 # Random Imputation of flight_sale_type
 df = fill_with_random(df, "flight_sale_type")
+
+# Fill Capacity
+df["flight_capacity"] = df["flight_capacity"].replace('موجود', None, regex=True)
+
+# df["flight_capacity"] = fillna_capacity(df[["flight_capacity"]])
+df["flight_capacity"] = df["flight_capacity"].fillna(method='bfill')
+
 
 # Move position of columns.
 df = move_columns(
