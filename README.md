@@ -7,9 +7,9 @@ It is a data science project for predicting the lowest ticket price in a certain
 
 2. **Pre-processing** data that I gathered.
 
-3. **training** model
+3. **Training** model
 
-4. **predicting** phase.
+4. **Predicting** phase.
 
 **Project Organization Hierarchy**
 ------------
