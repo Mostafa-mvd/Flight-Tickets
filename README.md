@@ -3,11 +3,13 @@
 
 It is a data science project for predicting the lowest ticket price in a certain period of time.
 
-1. Scraped from tcharter.ir
+1. **Scraped** from tcharter.ir
 
-2. Pre-processing of data I gathered.
+2. **Pre-processing** data that I gathered.
 
-3. Phase of training model and predicting.
+3. **training** model
+
+4. **predicting** phase.
 
 **Project Organization Hierarchy**
 ------------
